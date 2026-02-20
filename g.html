@@ -1,0 +1,4243 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدعوة السلفية | دورة الإتقان في العقيدة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> 
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght=400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        :root {
+    --primary-color: #007bff;
+    --secondary-color: #28a745;
+    --dark-color: #343a40;
+    --light-color: #f8f9fa;
+    --header-bg: #ffffff;
+    --font-family: 'Cairo', sans-serif;
+    --transition-speed: .3s;
+    --yellow-border: #FFC107; 
+    --salafi-blue: #115ED5; 
+    --shadow-blue: rgba(17, 94, 213, 0.2); 
+    --glowing-shadow-blue: rgba(17, 94, 213, 0.4); 
+    --certificate-bg: #fffbe0; 
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--light-color); 
+    color: var(--dark-color);
+    line-height: 1.6;
+    text-align: right;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--dark-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.page-section {
+    display: none;
+    padding: 20px 0; 
+    min-height: 80vh;
+    background-color: white;
+}
+
+.page-section.active {
+    display: block;
+}
+
+/* --- الهيدر وشريط التنقل --- */
+.main-header {
+    position: relative; 
+    top: 0;
+    z-index: 1000;
+    background: var(--light-color); 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05); 
+    padding: 10px 0; 
+    display: flex;
+    flex-direction: column; /* جعل العناصر في الهيدر عمودية (الشعار يليه شريط التنقل) */
+    align-items: center;
+}
+
+.top-nav-bar {
+    background-color: var(--header-bg); 
+    padding: 15px 25px; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); 
+    border: 1px solid #e0e0e0; 
+    max-width: 95%; 
+    width: 100%;
+    margin: 0 auto; 
+    display: block; 
+}
+
+.top-nav-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    /* التعديل: هنا نجعل العناصر تلتف لضمان توسيط الشعار إذا وضع داخله */
+    flex-wrap: wrap; 
+}
+
+.nav-links-wrapper {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    order: 2;
+}
+
+.top-nav-bar .nav-links {
+    display: flex;
+    flex-direction: row; 
+    gap: 35px; /* المسافة بين الدوائر */
+}
+
+/* 🚀 تنسيق روابط التنقل (A) 🚀 */
+.top-nav-bar .nav-links a {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5px; 
+    border-radius: 10px; 
+    transition: all 0.3s;
+    color: var(--dark-color); 
+    font-weight: 500;
+    font-size: 0.9rem;
+    box-shadow: none; 
+    background: none; 
+}
+
+/* 🟢 تنسيق الدائرة (Nav Icon) - حجم كبير وثابت 🟢 */
+.top-nav-bar .nav-links a .nav-icon {
+    background: linear-gradient(to right, var(--salafi-blue) 0%, #ff6e40 100%); 
+    color: white; 
+    width: 65px; 
+    height: 65px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; 
+    font-size: 1.8rem; 
+    margin-bottom: 5px; 
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(17, 94, 213, 0.4); 
+}
+
+/* 🔵 إلغاء التموج (الـ Transform) عند التحويم 🟠 */
+.top-nav-bar .nav-links a:hover {
+    color: var(--salafi-blue); 
+    transform: none; 
+}
+
+.top-nav-bar .nav-links a:hover .nav-icon {
+    background: linear-gradient(to left, var(--salafi-blue) 0%, #ff6e40 100%); 
+    box-shadow: 0 6px 15px rgba(17, 94, 213, 0.6); 
+    transform: none; 
+}
+
+/* 🚀 تنسيق الرابط النشط (A.active) 🚀 */
+.top-nav-bar .nav-links a.active {
+    color: var(--dark-color) !important; 
+    transform: none !important;
+}
+
+.top-nav-bar .nav-links a.active .nav-icon {
+    background: linear-gradient(to bottom, #ff9800 0%, #0056b3 100%) !important; 
+    border: 3px solid var(--dark-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important; 
+    transform: none !important; 
+}
+
+/* --- تنسيق رابط المستخدم (.user-link) --- */
+.user-link {
+    background: none; 
+    color: var(--dark-color);
+    padding: 0;
+    border-radius: 0;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    white-space: nowrap; 
+    order: 3;
+    transition: all 0.3s;
+    box-shadow: none;
+    font-size: 0.9rem;
+}
+
+/* 🟢 تنسيق أيقونة المستخدم - حجم كبير وثابت 🟢 */
+.user-link .user-icon {
+    background: linear-gradient(to right, #28a745 0%, #17a2b8 100%); 
+    color: white;
+    width: 65px; 
+    height: 65px; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem; 
+    margin-bottom: 5px;
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+    transition: all 0.3s;
+}
+
+/* 🔵 إلغاء التموج (الـ Transform) عند التحويم 🟠 */
+.user-link:hover {
+    color: var(--secondary-color);
+    transform: none; 
+}
+
+.user-link:hover .user-icon {
+    background: linear-gradient(to left, #28a745 0%, #17a2b8 100%);
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.6);
+    transform: none; 
+}
+
+
+/* 🚀 التعديل: تكبير وتوسيط الشعار 🚀 */
+.logo {
+    color: var(--salafi-blue); 
+    font-size: 2.rem;       /* 🚀 الحجم الجديد 🚀 */
+    font-weight: 800; 
+    white-space: nowrap;
+    order: 1;              /* جعله أول عنصر (لأنه خارج الـ top-nav-bar) */
+    width: 100%;           /* جعله يحتل عرض الـ container بالكامل */
+    text-align: center;    /* 🚀 التوسيط 🚀 */
+    margin: 15px 0 10px 0; /* هوامش للفصل */
+}
+
+/* --- باقي التنسيقات العامة (بدون تغيير) --- */
+
+.courses-section .section-title {
+    text-align: center; 
+    margin-bottom: 30px;
+    color: var(--dark-color);
+    font-size: 1.5rem; 
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
+}
+
+/* --- تصميم بطاقات الوحدات (Lessons Cards) --- */
+.lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.mini-lesson-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff; 
+    border: 3px solid var(--salafi-blue); 
+    padding: 10px 20px; 
+    margin-bottom: 15px; 
+    border-radius: 25px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 0 10px var(--shadow-blue); 
+    min-height: 80px; 
+    color: var(--dark-color);
+    position: relative; 
+}
+
+.mini-lesson-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 0 20px var(--glowing-shadow-blue), 0 5px 15px var(--glowing-shadow-blue); 
+}
+
+.lesson-number-circle {
+    min-width: 45px; 
+    height: 45px;   
+    border-radius: 50%;
+    background-color: var(--salafi-blue); 
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem; 
+    font-weight: 700;
+    margin-right: 15px;
+    margin-left: 0; 
+    transition: background-color 0.3s;
+    order: 1; 
+    position: relative; 
+    z-index: 10;
+}
+
+.lesson-number-circle.completed-circle {
+    background-color: var(--secondary-color);
+}
+
+
+.lesson-number-circle.completed-circle::after {
+    content: '✓'; 
+    position: absolute;
+    top: -8px; 
+    right: -8px; 
+    left: auto;
+    width: 20px;
+    height: 20px;
+    background-color: var(--secondary-color); 
+    color: white;
+    border-radius: 50%;
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 20px;
+    text-align: center;
+    border: 2px solid white; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+}
+
+.mini-lesson-card .mini-card-content {
+    flex-grow: 1;
+    text-align: right;
+    order: 2; 
+    margin-left: 15px; 
+    margin-right: 0;
+}
+
+.mini-card-content h4 {
+    color: #000000; 
+    margin-bottom: 2px; 
+    font-size: 1rem; 
+}
+
+.mini-card-content p {
+    color: #333333; 
+    font-size: 0.9rem; 
+    line-height: 1.4; 
+}
+
+.mini-lesson-card.locked {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.mini-lesson-card.locked .lesson-number-circle {
+    background-color: #6c757d; 
+}
+
+.mini-lesson-card.locked:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, .1); 
+    transform: none;
+}
+
+/* تنسيقات إظهار البطاقات المتحركة */
+.fade-in-card {
+    opacity: 0;
+    transform: translateY(20px);
+}
+.animate__fadeInUp {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* 🔴🔴 تنسيقات صفحة الاختبارات (Quiz Section) 🔴🔴 */
+
+#lesson-quiz {
+    background-color: var(--light-color); 
+    padding-top: 50px;
+}
+
+#quiz-section { 
+    padding: 30px;
+    background-color: var(--header-bg); 
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--salafi-blue); 
+    margin-top: 20px;
+}
+
+.question-count {
+    text-align: left;
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.quiz-question {
+    font-size: 1.6rem;
+    color: var(--dark-color);
+    margin-bottom: 30px;
+    line-height: 1.8;
+    font-weight: 700;
+    text-align: right;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.option {
+    background-color: var(--light-color);
+    border: 1px solid #ddd;
+    padding: 15px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: right;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+}
+
+.option:hover {
+    background-color: #e9ecef;
+    border-color: var(--salafi-blue);
+    transform: translateX(-3px);
+}
+
+.option.selected {
+    background-color: #e6f3ff;
+    border-color: var(--salafi-blue);
+    font-weight: 700;
+    box-shadow: 0 0 5px var(--shadow-blue);
+}
+
+.option span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: var(--salafi-blue);
+    color: white;
+    border-radius: 50%;
+    margin-left: 15px;
+    font-size: 1rem;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+/* تنسيق الأزرار العامة */
+#next-btn, .btn {
+    padding: 10px 25px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: var(--salafi-blue);
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #0d4a9d;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    margin-left: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+#next-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+
+/* 🔴 تنسيقات النتائج (showQuizResults) 🔴 */
+.quiz-results {
+    text-align: center;
+    padding: 40px;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.quiz-results h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.quiz-results.passed {
+    border: 3px solid var(--secondary-color);
+    background-color: #e6ffec; 
+    color: var(--secondary-color);
+}
+
+.quiz-results.failed {
+    border: 3px solid #dc3545;
+    background-color: #ffe6e6; 
+    color: #dc3545;
+}
+
+.result-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.percentage-score {
+    font-size: 1.8rem;
+    font-weight: 900;
+    display: block;
+    margin: 10px 0;
+}
+
+.quiz-results p {
+    color: var(--dark-color);
+    margin: 8px 0;
+}
+
+.quiz-results.passed p {
+    color: #155724; 
+}
+.quiz-results.failed p {
+    color: #721c24; 
+}
+
+/* 🔴 تنسيقات الشهادات 🔴 */
+#certificates-list {
+    /* تم تغيير display: flex; إلى display: grid; لمطابقة lessons-grid */
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+    padding: 20px 0;
+}
+.certificate-card {
+    background-color: var(--certificate-bg); 
+    border: 2px solid var(--yellow-border);
+    border-radius: 20px; 
+    padding: 30px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    text-align: right;
+}
+
+.certificate-card h3 {
+    color: var(--dark-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 10px;
+}
+
+.certificate-card p {
+    margin: 8px 0;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+#no-certificates-msg {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.3rem;
+    color: #888;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* تنسيق الفوتر */
+.main-footer {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+    font-size: 0.9rem;
+}
+
+/* تنسيقات شاشة التفاصيل (Details) */
+#lesson-details {
+    padding-top: 50px;
+}
+
+.detail-box {
+    background-color: #ffe6e6; 
+    border-right: 5px solid #dc3545; 
+    color: #721c24; 
+    padding: 25px; 
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: right;
+}
+
+.detail-box h3 {
+    color: #dc3545;
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+.detail-box p {
+    color: #721c24; 
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* تنسيق لوحة المتابعة (Dashboard) */
+.dashboard-section {
+    background-color: var(--light-color);
+}
+
+.stat-card {
+    background-color: var(--header-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--salafi-blue);
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--dark-color);
+}
+
+/* تنسيق شريط التقدم */
+.progress-bar-container {
+    height: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--secondary-color);
+    transition: width 0.5s ease-in-out;
+    border-radius: 5px;
+}
+
+/* تنسيق قائمة إحصائيات الوحدات */
+.stats-list {
+    margin-top: 20px;
+    padding: 0;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.stats-list li {
+    padding: 15px 20px;
+    border-bottom: 1px dotted #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    flex-wrap: wrap; 
+}
+.stats-list li:last-child {
+    border-bottom: none;
+}
+
+/* حاوية الأزرار الجديدة في بطاقات الوحدات */
+.card-actions {
+    order: 3; 
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 0;
+    margin-right: 15px; 
+    flex-shrink: 0;
+}
+
+/* تنسيق أزرار الشرح والاختبار داخل البطاقة */
+.card-actions .btn {
+    padding: 7px 12px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    width: 100px; 
+}
+
+/* زر الشرح (Secondary) */
+.card-actions .btn-secondary {
+    background-color: #ffc107 !important; 
+    color: var(--dark-color) !important;
+    border: 1px solid #ffc107;
+}
+
+.card-actions .btn-secondary:hover {
+    background-color: #e0a800 !important;
+    transform: none;
+}
+
+/* زر الاختبار (Primary) */
+.card-actions .btn-primary {
+    background-color: var(--salafi-blue) !important;
+}
+.card-actions .btn-primary:hover {
+    background-color: #0d4a9d !important;
+    transform: none;
+}
+
+/* Media Query for Mobile screens */
+@media (max-width: 768px) {
+    .main-header {
+        padding: 5px 0;
+    }
+    .top-nav-bar {
+        padding: 10px 15px;
+        border-radius: 10px;
+        display: block; 
+    }
+    .top-nav-bar .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .logo {
+        order: 1;
+        font-size: 2.5rem; /* تكبير الخط على الجوال */
+        margin: 10px 0 5px 0;
+    }
+    .top-nav-bar .nav-links-wrapper {
+        justify-content: center;
+        flex-grow: 0; 
+        width: 100%;
+        order: 2;
+    }
+    .top-nav-bar .nav-links {
+        gap: 5px; 
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    /* تعديل تنسيق الروابط والأيقونات في شريط التنقل على الجوال */
+    .top-nav-bar .nav-links a {
+        padding: 5px 0; 
+        font-size: 0.8rem;
+    }
+    .top-nav-bar .nav-links a .nav-icon {
+        width: 50px; 
+        height: 50px; 
+        font-size: 1.5rem;
+        margin-bottom: 3px; 
+    }
+    .user-link {
+        margin-top: 5px;
+        order: 3;
+    }
+    .user-link .user-icon {
+        width: 50px; 
+        height: 50px; 
+        font-size: 1.5rem;
+        margin-bottom: 3px;
+    }
+    /* تعديل تنسيقات بطاقات الوحدات في الجوال */
+    .lessons-grid {
+        grid-template-columns: 1fr;
+    }
+    .mini-lesson-card {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+    }
+    .mini-lesson-card .mini-card-content {
+        margin-right: 10px; 
+        margin-left: 10px; 
+        text-align: right;
+    }
+    .mini-card-content h4 {
+        font-size: 0.9rem;
+    }
+    .card-actions {
+        flex-direction: row; 
+        gap: 5px;
+        margin-left: 0;
+        margin-right: 5px;
+        order: 3;
+    }
+    .card-actions .btn {
+        width: auto; 
+        font-size: 0.75rem !important;
+        padding: 6px 8px !important;
+    }
+}
+/* --- 🆕 تنسيقات هيكل الأكورديون (Accordion) لصفحة الشرح 🆕 --- */
+
+#details-lesson-title {
+    text-align: center;
+    color: var(--dark-color);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--salafi-blue);
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: var(--salafi-blue);
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: right;
+}
+
+.accordion {
+    margin-top: 20px;
+    direction: rtl; /* لضمان التناسق مع اللغة العربية */
+}
+
+/* تنسيق البطاقة الأساسية (Card) */
+.accordion .card {
+    border: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+}
+
+.accordion .card:hover {
+    border-color: var(--salafi-blue);
+    box-shadow: 0 6px 18px rgba(17, 94, 213, 0.1);
+}
+
+/* تنسيق الرأس (العنوان) */
+.accordion .card-header {
+    background-color: var(--light-color);
+    padding: 0;
+    border-bottom: none;
+}
+
+/* تنسيق زر العنوان */
+.accordion .btn-link {
+    width: 100%;
+    text-align: right;
+    padding: 18px 25px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    text-decoration: none;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 12px;
+    display: flex; /* لترتيب الأيقونة والعنوان */
+    align-items: center;
+}
+
+.accordion .btn-link:hover {
+    background-color: #f1f1f1;
+    color: var(--salafi-blue);
+}
+
+/* تنسيق أيقونة العنوان */
+.accordion .btn-link i {
+    font-size: 1.3rem;
+    color: var(--salafi-blue);
+    margin-left: 15px; /* مسافة عن النص */
+    transition: transform 0.3s;
+}
+
+/* تنسيق أيقونة العنوان عند الكشف/الطي */
+.accordion .btn-link[aria-expanded="true"] i {
+    color: var(--secondary-color); /* يتغير لونها عند الفتح */
+}
+
+/* تنسيق محتوى الشرح (Card Body) */
+.accordion .card-body {
+    padding: 20px 30px 25px;
+    border-top: 2px solid #e9ecef;
+    background-color: #fcfdff; /* خلفية فاتحة للمحتوى */
+}
+
+.accordion .card-body h4 {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+    border-right: 3px solid var(--salafi-blue);
+    padding-right: 10px;
+    font-weight: 700;
+}
+
+/* تنسيق قائمة روابط اليوتيوب */
+.accordion .card-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.accordion .card-body li {
+    padding: 10px 0;
+    border-bottom: 1px dotted #e0e0e0;
+}
+.accordion .card-body li:last-child {
+    border-bottom: none;
+}
+
+/* تنسيق رابط اليوتيوب الفعلي */
+.accordion .card-body .youtube-link {
+    color: #dc3545; /* لون أحمر اليوتيوب */
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.accordion .card-body .youtube-link:hover {
+    color: #a71d2a;
+    text-decoration: underline;
+}
+
+.accordion .card-body .youtube-link i {
+    color: #dc3545;
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
+/* تنسيق الملاحظة في نهاية الشرح */
+.accordion .card-body p {
+    font-size: 0.9rem;
+}
+
+/* تنسيق رسالة المحتوى الفارغ (من الكود القديم) */
+.detail-box {
+    background-color: #ffe6e6; 
+    border-right: 5px solid #dc3545; 
+    color: #721c24; 
+    padding: 25px; 
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: right;
+}
+.library-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+.lib-box {
+    background: #ffffff;
+    border-left: 5px solid #005eff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #00000015;
+}
+
+.lib-box h3 {
+    margin-bottom: 15px;
+    color: #005eff;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.lib-item {
+    background: #f4f7ff;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.lib-item h4 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-weight: bold;
+}
+
+.lib-btn {
+    display: inline-block;
+    background: #005eff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.lib-btn:hover {
+    background: #003fbf;
+}
+
+.section-title {
+    font-size: 26px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #005eff;
+}
+
+.floating-contact-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px; /* في أقصى اليمين */
+    z-index: 10000;
+    
+    /* استخدام التدرج اللوني لأيقونات التنقل */
+    background: linear-gradient(to right, #007bff 0%, #28a745 100%); 
+    color: white;
+    
+    padding: 10px 15px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: right;
+}
+
+.floating-contact-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    color: white; /* تأكيد أن النص لا يتغير لونه */
+}
+    </style>
+    
+
+</head>
+<body>
+    
+    <a href="https://wa.me/201202763155" target="_blank" class="floating-contact-btn" title="تواصل مع المطوّر">
+        <i class="fab fa-whatsapp"></i>
+        <span>تواصل مع المطوّر</span>
+    </a>
+
+    <div id="main-app" class="page-section" style="display:none;">
+        <header class="main-header">
+            <div class="top-nav-bar">
+                <div class="container" style="justify-content: space-between;">
+                    
+                    <div class="nav-links-wrapper">
+                        <div class="nav-links">
+                            <a href="#" onclick="showPage('dashboard-section'); return false;" id="nav-dashboard" class="nav-item active">
+                                <span class="nav-icon"><i class="fas fa-tachometer-alt"></i></span>
+                                <span class="nav-label">المتابعة</span>
+                            </a>
+                            <a href="#" onclick="showPage('courses-section'); return false;" id="nav-courses" class="nav-item">
+                                <span class="nav-icon"><i class="fas fa-graduation-cap"></i></span>
+                                <span class="nav-label">الدورات</span>
+                            </a>
+                            <a href="#" onclick="showPage('library-section'); return false;" id="nav-library" class="nav-item">
+                                <span class="nav-icon"><i class="fas fa-book"></i></span>
+                                <span class="nav-label">المكتبة</span>
+                            </a>
+                            <a href="#" onclick="showPage('certificates'); return false;" id="nav-certificates" class="nav-item">
+                                <span class="nav-icon"><i class="fas fa-certificate"></i></span>
+                                <span class="nav-label">شهادتي</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="#" onclick="promptForUserName(); return false;" class="user-link">
+                        <span class="user-icon"><i class="fas fa-user-circle"></i></span>
+                        <span id="display-user-name" class="user-label">طالب العلم</span>
+                    </a>
+                </div>
+            </div>
+
+            
+            <div class="container">
+                <h1 class="logo">الدعوة السلفية</h1>
+                <nav class="main-nav"></nav>
+            </div>
+        </header>
+
+        <section id="dashboard-section" class="dashboard-section page-section active">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-tachometer-alt"></i> لوحة المتابعة الخاصة بك - الدعوة السلفية</h2>
+                <div class="dashboard-grid lessons-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    
+                    <div class="stat-card">
+                        <h3>الإنجاز الكلي في الدورة</h3>
+                        <p class="stat-value"><span id="total-progress-percent">0</span>%</p>
+                        <div class="progress-bar-container"><div id="total-progress-bar" class="progress-bar"></div></div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3>الوحدات المكتملة</h3>
+                        <p class="stat-value"><span id="completed-lessons-count">0</span> / <span id="total-lessons-count">10</span></p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>أعلى نتيجة اختبار</h3>
+                        <p class="stat-value"><span id="highest-score">لم تختبر بعد</span></p>
+                    </div>
+                    
+                </div>
+                <h3 style="margin-top: 40px; border-bottom: 2px solid #eee; padding-bottom: 10px;">إحصائيات الوحدات:</h3>
+                <ul id="lesson-stats-list" class="stats-list" style="list-style: none; padding: 0;">
+                    </ul>
+            </div>
+        </section>
+     
+        <section id="courses-section" class="courses-section page-section">
+            <div class="container">
+                <h2 class="section-title">دورة الإتقان في العقيدة الإسلامية - الدعوة السلفية</h2>
+                <p style="text-align:center;margin-bottom:30px;font-size:1.1rem;color:#555">اختر وحدة من الوحدات التالية للدراسة والاختبار. يجب إكمال الوحدة بالترتيب.</p>
+                <div class="lessons-grid" id="mini-cards-container">
+                    
+                    <a href="#" class="mini-lesson-card fade-in-card" id="mini-card-01">
+                        <div class="lesson-number-circle" id="circle-01">1</div>
+                        <div class="mini-card-content">
+                            <h4>الوحدة 1: الأساسيات والمنهج السلفي</h4>
+                            <p>مفهوم التوحيد، أصول المنهج السلفي، وأهمية العقيدة الصحيحة.</p>
+                        </div>
+                        <div class="card-actions" style="margin-right: 15px; display: flex; flex-direction: column; gap: 5px;">
+                            <button class="btn btn-secondary" onclick="
+                                var contentHTML = `
+                                    <div class=&quot;detail-box&quot; style=&quot;background-color: #fff3cd; border-right: 5px solid #ffc107; color: #856404; padding: 15px; margin-bottom: 20px; border-radius: 5px; text-align: right;&quot;>
+                                        <p><strong>محتوى الوحدة:</strong> مفهوم التوحيد، أصول المنهج السلفي، وأهمية العقيدة الصحيحة.</p>
+                                    </div>
+                                    <div class=&quot;youtube-links-section&quot; style=&quot;
+                                        background-color: #f4f4f9; 
+                                        border: 1px solid #c4302b; 
+                                        padding: 15px; 
+                                        border-radius: 8px; 
+                                        margin-top: 15px;
+                                        direction: rtl; 
+                                        text-align: right;
+                                    &quot;>
+                                        <h3 style=&quot;color: #c4302b; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-top: 0;&quot;>
+                                            📚 دروس الشيخ علاء حامد في العقيدة
+                                        </h3>
+                                        <ul style=&quot;list-style: none; padding: 0;&quot;>
+                                            <li style=&quot;margin-bottom: 10px; background-color: #ffffff; padding: 12px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);&quot;>
+                                                <a href=&quot;http://www.youtube.com/watch?v=VR1xbVL2Pnw&quot; target=&quot;_blank&quot; style=&quot;text-decoration: none; color: #1a73e8; font-weight: bold; display: block;&quot;>
+                                                    ▶️ 001- 20 سبب لدراسة العقيدة ( شرح كتاب أصول الإيمان )
+                                                </a>
+                                                <span style=&quot;font-size: 0.9rem; color: #555; display: block; margin-top: 5px;&quot;>
+                                                    (من قناة: Alaa Hamed - علاء حامد)
+                                                </span>
+                                            </li>
+                                            <li style=&quot;margin-bottom: 10px; background-color: #ffffff; padding: 12px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);&quot;>
+                                                <a href=&quot;http://www.youtube.com/watch?v=1UFm01zaYyg&quot; target=&quot;_blank&quot; style=&quot;text-decoration: none; color: #1a73e8; font-weight: bold; display: block;&quot;>
+                                                    ▶️ 003- مناقشة الملحدين - ( شرح كتاب أصول الإيمان )
+                                                </a>
+                                                <span style=&quot;font-size: 0.9rem; color: #555; display: block; margin-top: 5px;&quot;>
+                                                    (من قناة: Alaa Hamed - علاء حامد)
+                                                </span>
+                                            </li>
+                                            <li style=&quot;margin-bottom: 10px; background-color: #ffffff; padding: 12px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);&quot;>
+                                                <a href=&quot;http://www.youtube.com/watch?v=2e9g16KOT-I&quot; target=&quot;_blank&quot; style=&quot;text-decoration: none; color: #1a73e8; font-weight: bold; display: block;&quot;>
+                                                    ▶️ 004- اعبد ربنا صح ( توحيد الألوهية) - ( كتاب أصول الإيمان )
+                                                </a>
+                                                <span style=&quot;font-size: 0.9rem; color: #555; display: block; margin-top: 5px;&quot;>
+                                                    (من قناة: Alaa Hamed - علاء حامد)
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <p style=&quot;text-align: center; margin-top: 15px; font-size: 0.95rem; color: #777;&quot;>
+                                            اضغط على عنوان الدرس للمشاهدة مباشرةً على يوتيوب.
+                                        </p>
+                                    </div>
+                                `;
+                                document.getElementById('details-lesson-title').textContent = 'شرح الوحدة 1: الأساسيات والمنهج السلفي';
+                                document.getElementById('details-content').innerHTML = contentHTML;
+                                showPage('lesson-details');
+                                return false; // منع التنقل الافتراضي للرابط
+                            " style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-book-open"></i> الشرح</button>
+                            <button class="btn btn-primary" onclick="startQuiz(1)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-edit"></i> الاختبار</button>
+                        </div>
+                    </a>
+
+                    <a href="#" class="mini-lesson-card locked fade-in-card" id="mini-card-02">
+                        <div class="lesson-number-circle" id="circle-02"><i class="fas fa-lock"></i></div>
+                        <div class="mini-card-content">
+                            <h4>الوحدة 2: أركان الإيمان وتطبيقاتها</h4>
+                            <p>الإيمان بالله، الملائكة، والكتب السماوية (يتطلب إتمام الوحدة 1).</p>
+                        </div>
+                        <div class="card-actions" style="margin-right: 15px; display: flex; flex-direction: column; gap: 5px;">
+                            <button class="btn btn-secondary" onclick="startDetails(2)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-book-open"></i> الشرح</button>
+                            <button class="btn btn-primary" onclick="startQuiz(2)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-edit"></i> الاختبار</button>
+                        </div>
+                    </a>
+
+                    <a href="#" class="mini-lesson-card locked fade-in-card" id="mini-card-03">
+                        <div class="lesson-number-circle" id="circle-03"><i class="fas fa-lock"></i></div>
+                        <div class="mini-card-content">
+                            <h4>الوحدة 3: التوحيد العملي ومواضيع مختارة</h4>
+                            <p>أهمية الدعاء، الاستعانة، والشرك الأصغر وأمثلته (يتطلب إتمام الوحدة 2).</p>
+                        </div>
+                        <div class="card-actions" style="margin-right: 15px; display: flex; flex-direction: column; gap: 5px;">
+                            <button class="btn btn-secondary" onclick="startDetails(3)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-book-open"></i> الشرح</button>
+                            <button class="btn btn-primary" onclick="startQuiz(3)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-edit"></i> الاختبار</button>
+                        </div>
+                    </a>
+
+                    <a href="#" class="mini-lesson-card locked fade-in-card" id="mini-card-04">
+                        <div class="lesson-number-circle" id="circle-04"><i class="fas fa-lock"></i></div>
+                        <div class="mini-card-content">
+                            <h4>الوحدة 4: النبوة واليوم الآخر</h4>
+                            <p>الإيمان بالرسل، مراحل اليوم الآخر، وشروط الشفاعة (يتطلب إتمام الوحدة 3).</p>
+                        </div>
+                        <div class="card-actions" style="margin-right: 15px; display: flex; flex-direction: column; gap: 5px;">
+                            <button class="btn btn-secondary" onclick="startDetails(4)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-book-open"></i> الشرح</button>
+                            <button class="btn btn-primary" onclick="startQuiz(4)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-edit"></i> الاختبار</button>
+                        </div>
+                    </a>
+
+                    <a href="#" class="mini-lesson-card locked fade-in-card" id="mini-card-05">
+                        <div class="lesson-number-circle" id="circle-05"><i class="fas fa-lock"></i></div>
+                        <div class="mini-card-content">
+                            <h4>الوحدة 5: أسماء الله الحسنى والقضاء والقدر</h4>
+                            <p>منهج السلف في الأسماء والصفات وأركان الإيمان بالقدر (يتطلب إتمام الوحدة 4).</p>
+                        </div>
+                        <div class="card-actions" style="margin-right: 15px; display: flex; flex-direction: column; gap: 5px;">
+                            <button class="btn btn-secondary" onclick="startDetails(5)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-book-open"></i> الشرح</button>
+                            <button class="btn btn-primary" onclick="startQuiz(5)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-edit"></i> الاختبار</button>
+                        </div>
+                    </a>
+
+                    <a href="#" class="mini-lesson-card locked fade-in-card" id="mini-card-06">
+                        <div class="lesson-number-circle" id="circle-06"><i class="fas fa-lock"></i></div>
+                        <div class="mini-card-content">
+                            <h4>الوحدة 6: الفرقة الناجية وأصول التعامل</h4>
+                            <p>تعريف أهل السنة والجماعة، وأصول التعامل مع حكام المسلمين (يتطلب إتمام الوحدة 5).</p>
+                        </div>
+                        <div class="card-actions" style="margin-right: 15px; display: flex; flex-direction: column; gap: 5px;">
+                            <button class="btn btn-secondary" onclick="startDetails(6)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-book-open"></i> الشرح</button>
+                            <button class="btn btn-primary" onclick="startQuiz(6)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-edit"></i> الاختبار</button>
+                        </div>
+                    </a>
+
+                    <a href="#" class="mini-lesson-card locked fade-in-card" id="mini-card-07">
+                        <div class="lesson-number-circle" id="circle-07"><i class="fas fa-lock"></i></div>
+                        <div class="mini-card-content">
+                            <h4>الوحدة 7: مسائل الإيمان والكفر</h4>
+                            <p>تعريف الإيمان، زيادة الإيمان ونقصانه، وضوابط التكفير (يتطلب إتمام الوحدة 6).</p>
+                        </div>
+                        <div class="card-actions" style="margin-right: 15px; display: flex; flex-direction: column; gap: 5px;">
+                            <button class="btn btn-secondary" onclick="startDetails(7)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-book-open"></i> الشرح</button>
+                            <button class="btn btn-primary" onclick="startQuiz(7)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-edit"></i> الاختبار</button>
+                        </div>
+                    </a>
+
+                    <a href="#" class="mini-lesson-card locked fade-in-card" id="mini-card-08">
+                        <div class="lesson-number-circle" id="circle-08"><i class="fas fa-lock"></i></div>
+                        <div class="mini-card-content">
+                            <h4>الوحدة 8: الأنبياء والصحابة</h4>
+                            <p>فضل الأنبياء والرسل، منهج السلف في الصحابة، والحذر من الخوض في الفتن (يتطلب إتمام الوحدة 7).</p>
+                        </div>
+                        <div class="card-actions" style="margin-right: 15px; display: flex; flex-direction: column; gap: 5px;">
+                            <button class="btn btn-secondary" onclick="startDetails(8)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-book-open"></i> الشرح</button>
+                            <button class="btn btn-primary" onclick="startQuiz(8)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-edit"></i> الاختبار</button>
+                        </div>
+                    </a>
+
+                    <a href="#" class="mini-lesson-card locked fade-in-card" id="mini-card-09">
+                        <div class="lesson-number-circle" id="circle-09"><i class="fas fa-lock"></i></div>
+                        <div class="mini-card-content">
+                            <h4>الوحدة 9: البدعة وموقف السلف</h4>
+                            <p>تعريف البدعة وأنواعها، وقاعدة "كل بدعة ضلالة"، وخطورة المبتدعة (يتطلب إتمام الوحدة 8).</p>
+                        </div>
+                        <div class="card-actions" style="margin-right: 15px; display: flex; flex-direction: column; gap: 5px;">
+                            <button class="btn btn-secondary" onclick="startDetails(9)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-book-open"></i> الشرح</button>
+                            <button class="btn btn-primary" onclick="startQuiz(9)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-edit"></i> الاختبار</button>
+                        </div>
+                    </a>
+
+                    <a href="#" class="mini-lesson-card locked fade-in-card" id="mini-card-10">
+                        <div class="lesson-number-circle" id="circle-10"><i class="fas fa-lock"></i></div>
+                        <div class="mini-card-content">
+                            <h4>الوحدة 10: ملخص الدورة ومفاهيم ختامية</h4>
+                            <p>قواعد ذهبية في العقيدة، وخلاصة منهج أهل السنة في التلقي (يتطلب إتمام الوحدة 9).</p>
+                        </div>
+                        <div class="card-actions" style="margin-right: 15px; display: flex; flex-direction: column; gap: 5px;">
+                            <button class="btn btn-secondary" onclick="startDetails(10)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-book-open"></i> الشرح</button>
+                            <button class="btn btn-primary" onclick="startQuiz(10)" style="padding: 5px 10px; font-size: 0.85rem;"><i class="fas fa-edit"></i> الاختبار</button>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    <section id="lesson-quiz" class="page-section">
+        <div class="container">
+            <button class="btn btn-primary" style="margin-bottom:20px" onclick="showPage('courses-section')"><i class="fas fa-chevron-right"></i> العودة إلى الدورات</button>
+            <h2 id="quiz-lesson-title" class="section-title" style="text-align:right;color:var(--dark-color);margin-bottom:20px">اختبار الوحدة - الدعوة السلفية</h2>
+            
+            <div id="quiz-section" class="quiz-section" style="display:none">
+                </div>
+        </div>
+    </section>
+    
+    <section id="lesson-details" class="page-section">
+        <div class="container">
+            <button class="btn btn-primary" style="margin-bottom:20px" onclick="showPage('courses-section')"><i class="fas fa-chevron-right"></i> العودة إلى الدورات</button>
+            <h2 id="details-lesson-title" class="section-title" style="text-align:right;color:var(--dark-color);margin-bottom:20px">شرح الوحدة - الدعوة السلفية</h2>
+            
+            <div id="details-content">
+                <p class="initial-msg" style="text-align:center;color:#888;padding:50px;">
+                    اضغط على زر "الشرح" في أي وحدة لعرض المحتوى هنا.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="library-section" class="page-section">
+        <div class="container">
+         <section id="librarySection" class="hidden">
+    <h2 class="section-title">📘 المكتبة والمصادر الإثرائية - الدعوة السلفية</h2>
+    
+    <div class="library-container">
+        
+        <div class="lib-box">
+            <h3>🔥 دورات التوحيد (عقيدة الدعوة السلفية)</h3>
+            
+            <div class="lib-item">
+                <h4>📌 دورة التوحيد – د. علاء حامد</h4>
+                <p>شرح مبسط شامل لأصول العقيدة، يناسب الطلاب والمبتدئين.</p>
+                <a class="lib-btn" href="https://youtube.com/playlist?list=PLbYPImZrrtZgD5vOYrCgPOs31lS9PxBQB" target="_blank">🔗 مشاهدة الدورة</a>
+            </div>
+            
+            <div class="lib-item">
+                <h4>📌 شرح كتاب التوحيد – د. ياسر برهامي</h4>
+                <p>شرح كامل لكتاب التوحيد مع الأدلة وبيان الشبهات.</p>
+                <a class="lib-btn" href="https://youtube.com/playlist?list=PLZ8J6VaaEXc4QNzr0OoJWy0nS9x2hG5B2" target="_blank">🔗 مشاهدة الدورة</a>
+            </div>
+        </div>
+        
+        
+        <div class="lib-box">
+            <h3>📚 الكتب المعتمدة في العقيدة</h3>
+            </div>
+        
+        
+        <div class="lib-box">
+            <h3>🎧 الصوتيات والدروس</h3>
+            </div>
+        
+        
+        <div class="lib-box">
+            <h3>🌐 مواقع موثوقة</h3>
+            </div>
+        
+    </div>
+</section>
+    <section id="certificates" class="page-section">
+        <div class="container">
+            <h2 class="section-title">شهادات الإنجاز والبطاقات المعتمدة - الدعوة السلفية</h2>
+            
+            <div id="no-certificates-msg" style="text-align: center; padding: 50px;">
+                <p style="font-size: 1.3rem; color: #888;">لا توجد شهادات متاحة حالياً. أكمل الاختبارات بنجاح للحصول على شهاداتك!</p>
+            </div>
+            
+            <div id="certificates-list" class="lessons-grid">
+                </div>
+        </div>
+    </section>
+    
+    </div>
+    
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 الدعوة السلفية. جميع الحقوق محفوظة.</p>
+        </div>
+        
+    </footer>
+    <script>
+        /*
+  Refactored script.js (FINALIZED)
+  - FIX 1: Corrected coursesData structure and added valid questions.
+  - FIX 2: Enhanced loadCertificates and getAllLessonKeys (dynamic counting).
+  - FEATURE 1: Added advanced styling and user answers review to showReviewPage.
+  - FEATURE 2: Added sendTelegramMessage template (user must configure keys).
+*/
+
+// ---- state -----------------------------------------------------------------
+let currentLessonId = 0;
+let currentQuestionIndex = 0;
+let userAnswers = {};
+let currentQuestions = [];
+const DEFAULT_USER_NAME = "طالب العلم المتميز";
+const DEFAULT_USER_IMAGE = "https://via.placeholder.com/40/007bff/ffffff?text=U";
+
+// ---- data (example) -------------------------------------------------------
+const coursesData = {
+  1: {
+    // ... تفاصيل الوحدة 1 الكاملة والأسئلة ...
+    cardTitle: "الوحدة 1: الأساسيات والمنهج السلفي",
+    subtitle: "الأساسيات والمنهج السلفي",
+    details: { /* ... */ },
+    questions: [ /* ... */ ]
+  }, 
+  2: { // 🔥 يجب إضافة هذه الوحدة
+    cardTitle: "الوحدة 2: الشرك ومضادات التوحيد",
+    subtitle: "الشـرك الأكبر والأصغر",
+    details: {}, // يمكنك إضافة تفاصيل هنا لاحقاً
+    questions: [] // يمكنك إضافة الأسئلة هنا لاحقاً
+  },
+  3: { // 🔥 يجب إضافة هذه الوحدة
+    cardTitle: "الوحدة 3: الإيمان والقدر",
+    subtitle: "أركان الإيمان",
+    details: {}, 
+    questions: []
+  },
+  4: { // 🔥 يجب إضافة هذه الوحدة
+    cardTitle: "الوحدة 4: الولاء والبراء",
+    subtitle: "أصول المنهج",
+    details: {},
+    questions: []
+  },
+  // هنا يمكنك إضافة الوحدات الأخرى...
+
+  1: {
+    cardTitle: "الوحدة 1: الأساسيات والمنهج السلفي",
+    title: "دورة الإتقان في العقيدة الإسلامية: الوحدة 1",
+    subtitle: "الأساسيات والمنهج السلفي",
+    details: {
+      topic1: {
+        title: "مفهوم التوحيد وأقسامه",
+        text: "التوحيد هو إفراد الله بالعبادة. وينقسم إلى ثلاثة أقسام رئيسية: توحيد الربوبية، وتوحيد الألوهية، وتوحيد الأسماء والصفات.",
+        youtubeLinks: [
+          
+    {
+        name: "شرح كتاب التوحيد — الشيخ صالح الفوزان",
+        url: "https://www.youtube.com/watch?v=FozanTawhid"
+    },
+    {
+        name: "العقيدة الصحيحة وما يضادها — ابن باز",
+        url: "https://www.youtube.com/watch?v=IbnBazAqeedah"
+    },
+    {
+        name: "شرح الأصول الثلاثة — الشيخ ابن عثيمين",
+        url: "https://www.youtube.com/watch?v=Usul3"
+    },
+    {
+        name: "سلسلة العقيدة والإيمان — الشعراوي",
+        url: "https://www.youtube.com/watch?v=Sh3rawyAqeedah"
+    },
+    {
+        name: "شرح لمعة الاعتقاد — الفوزان",
+        url: "https://www.youtube.com/watch?v=Lumaat"
+    },
+
+          { name: "شرح مختصر لتوحيد الألوهية", url: "https://www.youtube.com/watch?v=VR1xbVL2Pnw" },
+          { name: "أهمية توحيد الأسماء والصفات", url: "https://www.youtube.com/watch?v=1UFm01zaYyg" }
+        ]
+      },
+      topic2: {
+        title: "أصول المنهج السلفي في العقيدة",
+        text: "أهل السنة والجماعة...",
+        youtubeLinks: [ { name: "دروس في أصول السنة", url: "https://www.youtube.com/watch?v=2e9g16KOT-I" } ]
+      }
+    },
+    
+    //هنا سأضع الاسئلة لا تضع أي شئ هنا
+    // تم إضافة مصفوفة الأسئلة الفارغة لضبط الهيكل
+    questions: [
+              
+        {
+            q: "ما هو مفهوم التوحيد؟",
+            options: {
+                a: "الإيمان بجميع الأديان.",
+                b: "إفراد الله تعالى بالعبادة والربوبية والأسماء والصفات.",
+                c: "الإيمان بالأنبياء فقط.",
+                d: "اعتقاد وجود خالق للكون."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي الأصول الثلاثة التي يجب على العبد معرفتها؟",
+            options: {
+                a: "معرفة الصلاة والزكاة والصيام.",
+                b: "معرفة الله، ودينه، ونبيه محمد صلى الله عليه وسلم.",
+                c: "معرفة المذاهب الأربعة.",
+                d: "معرفة التاريخ والسيرة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو أساس المنهج السلفي في تلقي العقيدة؟",
+            options: {
+                a: "تقديم العقل على النقل.",
+                b: "الاعتماد على الكتاب والسنة بفهم السلف الصالح.",
+                c: "تقليد الأئمة دون دليل.",
+                d: "الاجتهاد المطلق."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الشرك الأكبر؟",
+            options: {
+                a: "الرياء اليسير في العمل.",
+                b: "حلف بغير الله.",
+                c: "صرف أي نوع من العبادة لغير الله تعالى، ويُخرج من الملة.",
+                d: "اعتقاد أن هناك خالقاً آخر مع الله."
+            },
+            ans: "c"
+        },
+        {
+            q: "من هم السلف الصالح؟",
+            options: {
+                a: "العلماء الذين ظهروا في القرن العشرين.",
+                b: "الصحابة والتابعون وأتباع التابعين بإحسان.",
+                c: "جميع المسلمين الملتزمين بالصلاة.",
+                d: "الأئمة الأربعة فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الفرق بين توحيد الربوبية وتوحيد الألوهية؟",
+            options: {
+                a: "لا يوجد فرق بينهما.",
+                b: "توحيد الربوبية يختص بأفعال الله، والألوهية يختص بأفعال العباد.",
+                c: "توحيد الألوهية يختص بأفعال الله، والربوبية يختص بأفعال العباد.",
+                d: "توحيد الربوبية يخص الأنبياء فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو تعريف العبادة؟",
+            options: {
+                a: "كل ما يحبه الله ويرضاه من الأقوال والأعمال الظاهرة والباطنة.",
+                b: "الصلاة والصوم فقط.",
+                c: "أفعال الجوارح دون القلب.",
+                d: "النية الطيبة."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما هي شروط قبول العبادة؟",
+            options: {
+                a: "الكثرة والجهر.",
+                b: "الإخلاص لله والمتابعة لرسوله صلى الله عليه وسلم.",
+                c: "الحالة النفسية الجيدة.",
+                d: "أن تكون سهلة التطبيق."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو توحيد الأسماء والصفات؟",
+            options: {
+                a: "تسمية الله بأي اسم يراه العبد حسناً.",
+                b: "نفي الصفات الإلهية لعدم إدراكها بالعقل.",
+                c: "إثبات ما أثبته الله لنفسه وما أثبته له رسوله من الأسماء والصفات من غير تحريف ولا تعطيل ولا تكييف ولا تمثيل.",
+                d: "تمثيل صفات الخالق بصفات المخلوقين."
+            },
+            ans: "c"
+        },
+        {
+            q: "ما هي أهمية دراسة العقيدة الصحيحة؟",
+            options: {
+                a: "هي طريق العلم الدنيوي.",
+                b: "هي أساس الدين الذي لا يصح عمل إلا به.",
+                c: "هي دليل على التفكير المنطقي.",
+                d: "لإثبات الذات أمام الآخرين."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي نواقض التوحيد؟",
+            options: {
+                a: "ترك صلاة النافلة.",
+                b: "كل ما ينافي التوحيد من الشرك أو الكفر أو النفاق الأكبر.",
+                c: "الجهل باللغة العربية.",
+                d: "التأخر عن صلاة الجماعة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم الاستعانة بغير الله في الأمور التي لا يقدر عليها إلا الله؟",
+            options: {
+                a: "جائز.",
+                b: "شرك أكبر.",
+                c: "مكروه.",
+                d: "بدعة حسنة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو النفاق الأكبر؟",
+            options: {
+                a: "إظهار الخير وإبطان الشر مطلقًا.",
+                b: "إظهار الإسلام وإبطان الكفر.",
+                c: "الخوف من الناس في غير العبادة.",
+                d: "الرياء اليسير في العمل."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو أول واجب على المكلف؟",
+            options: {
+                a: "الصلاة.",
+                b: "معرفة التوحيد والعمل به.",
+                c: "الزكاة.",
+                d: "طلب العلم الشرعي."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي العبادة القلبية التي تميز توحيد الألوهية؟",
+            options: {
+                a: "المشي إلى المسجد.",
+                b: "الخوف، الرجاء، المحبة، التوكل.",
+                c: "تلاوة القرآن.",
+                d: "قراءة الأذكار."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى 'لا معبود بحق إلا الله'؟",
+            options: {
+                a: "لا يوجد إله سوى الله.",
+                b: "أن جميع الآلهة الأخرى باطلة ولا يستحق العبادة إلا الله وحده.",
+                c: "أن الله هو الخالق فقط.",
+                d: "لا يوجد خالق للكون."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى 'التحريف' في الأسماء والصفات؟",
+            options: {
+                a: "تغيير لفظ الاسم أو الصفة.",
+                b: "تغيير معنى الاسم أو الصفة عن مراد الله ورسوله.",
+                c: "الإنكار الكلي للصفة.",
+                d: "تشبيه الصفة بصفات المخلوق."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم الحلف بغير الله؟",
+            options: {
+                a: "شرك أكبر.",
+                b: "شرك أصغر.",
+                c: "مباح إذا كان للضرورة.",
+                d: "مكروه."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي أقسام التوحيد عند أهل السنة؟",
+            options: {
+                a: "توحيد العمل والقول.",
+                b: "توحيد المعرفة والإثبات، وتوحيد القصد والطلب.",
+                c: "توحيد النية والإخلاص.",
+                d: "توحيد الأسماء والأفعال."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما الدليل من القرآن على وجوب عبادة الله وحده؟",
+            options: {
+                a: "(قُلْ هُوَ اللَّهُ أَحَدٌ)",
+                b: "(وَمَا خَلَقْتُ الْجِنَّ وَالْإِنسَ إِلَّا لِيَعْبُدُونِ)",
+                c: "(اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ)",
+                d: "(إِنَّ اللَّهَ غَفُورٌ رَّحِيمٌ)"
+            },
+            ans: "b"
+        }],
+        cardTitle: "الوحدة 1: الأساسيات والمنهج السلفي",
+        prerequisite: null
+    },
+    
+    // 🔴 الوحدة 2 (20 سؤال)
+    2: {
+        title: "دورة الإتقان في العقيدة الإسلامية: الوحدة 2",
+        subtitle: "أركان الإيمان وتطبيقاتها",
+        details: {},
+        questions: [
+        {
+            q: "ما هو أول ركن من أركان الإيمان؟",
+            options: {
+                a: "الإيمان بالملائكة.",
+                b: "الإيمان بالكتب.",
+                c: "الإيمان بالله.",
+                d: "الإيمان باليوم الآخر."
+            },
+            ans: "c"
+        },
+        {
+            q: "من هم الملائكة؟",
+            options: {
+                a: "أرواح الأنبياء الصالحين.",
+                b: "مخلوقات من نور، لا يأكلون ولا يشربون، ولا يعصون الله ما أمرهم.",
+                c: "بشر صالحون يقومون بعبادة الله.",
+                d: "مخلوقات من نار."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي الكتب السماوية التي يجب الإيمان بها إجمالاً؟",
+            options: {
+                a: "القرآن والتوراة والإنجيل فقط.",
+                b: "كل ما أنزل الله على رسله لهداية البشر.",
+                c: "الكتب التي ذكرت في القرآن فقط.",
+                d: "كتب الفقه والسيرة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى الإيمان بالرسل؟",
+            options: {
+                a: "التصديق بأنهم بشر أرسلهم الله بدليل معجزاتهم فقط.",
+                b: "التصديق الجازم بأن الله بعث في كل أمة رسولاً يدعوهم إلى عبادة الله وحده وتصديق من سمى الله لنا منهم والعمل بشريعة نبينا محمد صلى الله عليه وسلم.",
+                c: "الاكتفاء بتصديق محمد صلى الله عليه وسلم.",
+                d: "الإيمان بالرسل الذين ذكروا في القرآن فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي الثمرة العظيمة للإيمان باليوم الآخر؟",
+            options: {
+                a: "الخوف من الموت فقط.",
+                b: "الاجتهاد في الطاعة والبعد عن المعصية والاستعداد لذلك اليوم.",
+                c: "توقع حدوث الكوارث.",
+                d: "الاكتفاء بصلاة الفرائض."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الدليل على الإيمان بالقدر خيره وشره؟",
+            options: {
+                a: "الاعتماد على الظنون فقط.",
+                b: "قوله تعالى: (إِنَّا كُلَّ شَيْءٍ خَلَقْنَاهُ بِقَدَرٍ).",
+                c: "الاعتقاد بأن الإنسان مُسيَّر ولا اختيار له.",
+                d: "النظر في الفلك والنجوم."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي وظيفة جبريل عليه السلام؟",
+            options: {
+                a: "النفخ في الصور.",
+                b: "قبض الأرواح.",
+                c: "النزول بالوحي والرسالة.",
+                d: "تسيير السحاب."
+            },
+            ans: "c"
+        },
+        {
+            q: "ما هي الكتب السماوية التي ذكرت بالاسم في القرآن؟",
+            options: {
+                a: "القرآن، التوراة، الإنجيل، الزبور، وصحف إبراهيم وموسى.",
+                b: "القرآن والتوراة فقط.",
+                c: "القرآن والإنجيل فقط.",
+                d: "الزبور فقط."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما هو معنى ختم النبوة؟",
+            options: {
+                a: "أن الرسول صلى الله عليه وسلم آخر الأنبياء والرسل ولا نبي بعده.",
+                b: "أنه أفضل الأنبياء.",
+                c: "أنه أتى بمعجزة عظيمة.",
+                d: "أنه كتب رسالته بنفسه."
+            },
+            ans: "a"
+        },
+        {
+            q: "من هم أولو العزم من الرسل؟",
+            options: {
+                a: "موسى وعيسى وإبراهيم ولوط.",
+                b: "نوح وإبراهيم وموسى وعيسى ومحمد عليهم الصلاة والسلام.",
+                c: "يوسف ويعقوب ويونس.",
+                d: "جميع الرسل."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي حياة البرزخ؟",
+            options: {
+                a: "حياة بعد البعث وقبل الحساب.",
+                b: "الفترة الزمنية بين الموت والبعث.",
+                c: "الحياة في الجنة.",
+                d: "فترة انتظار يوم القيامة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم إنكار ركن واحد من أركان الإيمان الستة؟",
+            options: {
+                a: "يُعد من الكبائر فقط.",
+                b: "يُخرج صاحبه من دائرة الإسلام.",
+                c: "لا يؤثر على إيمانه.",
+                d: "يُوجب الكفارة فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو اسم الملك الموكل بالنفخ في الصور يوم القيامة؟",
+            options: {
+                a: "ميكائيل.",
+                b: "إسرافيل.",
+                c: "جبريل.",
+                d: "عزرائيل."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الفرق بين النبي والرسول؟",
+            options: {
+                a: "النبي لم يؤمر بتبليغ رسالة، الرسول أُمر بتبليغ رسالة جديدة.",
+                b: "الرسول أرسل إلى قوم كافرين، والنبي إلى قوم مؤمنين.",
+                c: "كل رسول نبي وليس كل نبي رسول.",
+                d: "لا فرق بينهما."
+            },
+            ans: "c"
+        },
+        {
+            q: "ما هو موقف المسلم من الكتب السماوية السابقة؟",
+            options: {
+                a: "الإيمان بها إجمالاً وأنها كانت وحياً، مع اعتقاد تحريفها ونسخها بالقرآن.",
+                b: "الإيمان بأنها باقية على حالها.",
+                c: "لا يجب الإيمان بها أصلاً.",
+                d: "الإيمان بها وتطبيق أحكامها."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما معنى 'القضاء' في الإيمان بالقدر؟",
+            options: {
+                a: "تحديد المصير النهائي.",
+                b: "وقوع المقضي في وقته وحسب ما كُتب في الأزل.",
+                c: "مشاهدة الأقدار.",
+                d: "إرادة الإنسان الحرة."
+            },
+            ans: "b"
+        },
+        {
+            q: "متى يبدأ اليوم الآخر؟",
+            options: {
+                a: "عند طلوع الشمس من مغربها.",
+                b: "من وقت قيام الساعة إلى ما لا نهاية.",
+                c: "من وقت موت الإنسان.",
+                d: "عند نزول عيسى عليه السلام."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي وظيفة ملك الموت؟",
+            options: {
+                a: "كتابة الأعمال.",
+                b: "قبض الأرواح.",
+                c: "تسيير الأرزاق.",
+                d: "النفخ في الصور."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو مذهب الخوارج في مرتكب الكبيرة؟",
+            options: {
+                a: "أنه مؤمن كامل الإيمان.",
+                b: "أنه كافر مخلد في النار.",
+                c: "أنه في منزلة بين المنزلتين.",
+                d: "أنه مؤمن ناقص الإيمان."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو مذهب المعتزلة في مرتكب الكبيرة؟",
+            options: {
+                a: "أنه مؤمن كامل الإيمان.",
+                b: "أنه كافر مخلد في النار.",
+                c: "أنه في منزلة بين المنزلتين (لا مؤمن ولا كافر).",
+                d: "أنه مؤمن ناقص الإيمان."
+            },
+            ans: "c"
+        }],
+        cardTitle: "الوحدة 2: أركان الإيمان وتطبيقاتها",
+        prerequisite: 1
+    },
+
+    // 🔴 الوحدة 3 (20 سؤال)
+    3: {
+        title: "دورة الإتقان في العقيدة الإسلامية: الوحدة 3",
+        subtitle: "التوحيد العملي ومواضيع مختارة",
+        details: {},
+        questions: [
+        {
+            q: "ما هو الشرك الأصغر؟",
+            options: {
+                a: "الشرك في الربوبية.",
+                b: "ما كان وسيلة إلى الشرك الأكبر ولم يخرِج من الملة، كالرياء اليسير.",
+                c: "اعتقاد وجود خالق للكون.",
+                d: "السجود لغير الله."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الرياء؟",
+            options: {
+                a: "إظهار العمل الصالح للناس دون قصد.",
+                b: "إظهار العبادة لقصد مدح الناس والثناء منهم.",
+                c: "الإكثار من الصلاة النافلة.",
+                d: "إخفاء العبادة عن جميع الناس."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم الذبح لغير الله؟",
+            options: {
+                a: "مكروه ولا يبطل العمل.",
+                b: "شرك أصغر.",
+                c: "شرك أكبر يُخرج من الملة.",
+                d: "جائز إذا كان القصد نية حسنة."
+            },
+            ans: "c"
+        },
+        {
+            q: "ما معنى الاستغاثة في الشرع؟",
+            options: {
+                a: "طلب المساعدة من أي شخص.",
+                b: "طلب الغوث من الأموات أو الغائبين أو من لا يقدر عليه إلا الله.",
+                c: "الاستغاثة بشخص حي قادر على الإغاثة فيما يقدر عليه.",
+                d: "قراءة القرآن عند الكرب."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم التمائم وتعليق الخيوط لرفع أو دفع البلاء؟",
+            options: {
+                a: "مباح ما لم يعتقد فيها النفع.",
+                b: "شرك أصغر إذا اعتقد أنها سبب، وشرك أكبر إذا اعتقد أنها تنفع بذاتها.",
+                c: "سنة حسنة من باب الأخذ بالأسباب.",
+                d: "مكروه فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم دعاء غير الله من الأموات أو الأصنام؟",
+            options: {
+                a: "مكروه.",
+                b: "شرك أكبر.",
+                c: "بدعة.",
+                d: "جائز إذا كان للتوسل."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الطيرة (التشاؤم)؟",
+            options: {
+                a: "مكروه ولا بأس به.",
+                b: "شرك أصغر، وهو اعتقاد تأثير بعض الأشياء في جلب النفع أو دفع الضر.",
+                c: "بدعة حسنة.",
+                d: "من باب الأخذ بالأسباب."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى التوكل على الله؟",
+            options: {
+                a: "ترك العمل والاعتماد على الله فقط.",
+                b: "الصدق في الاعتماد على الله مع فعل الأسباب المأذون بها.",
+                c: "الاعتماد على الأسباب دون الله.",
+                d: "الاعتماد على النفس."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم السحر والكهانة؟",
+            options: {
+                a: "جائز للضرورة.",
+                b: "شرك أكبر.",
+                c: "مكروه.",
+                d: "شرك أصغر."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم إتيان الكهان والسحرة وتصديقهم؟",
+            options: {
+                a: "إذا أتاهم وصدقهم فقد كفر بما أنزل على محمد.",
+                b: "جائز إذا لم يعمل بقولهم.",
+                c: "مكروه فقط.",
+                d: "لا بأس به لمعرفة المستقبل."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما حكم النذر لغير الله؟",
+            options: {
+                a: "جائز إذا كان القصد نية حسنة.",
+                b: "شرك أكبر.",
+                c: "مكروه.",
+                d: "بدعة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الأمل والرجاء المحمود؟",
+            options: {
+                a: "رجاء لا يصحبه عمل.",
+                b: "رجاء رحمة الله مع فعل الطاعات والعمل بالأسباب.",
+                c: "رجاء رحمة الله دون خوف من عذابه.",
+                d: "اليأس من رحمة الله."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو القول فيمن صلى وهو مُرَاءٍ لبعض الناس؟",
+            options: {
+                a: "عمله مقبول ويُنقص أجره قليلاً.",
+                b: "يبطل عمله كله لأنه أشرك في العبادة.",
+                c: "عمله باطل إذا كان في الصلاة الواجبة فقط.",
+                d: "يصح عمله ويحاسب على نيته."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم الاستعانة بالجن في قضاء الحاجات؟",
+            options: {
+                a: "جائز إذا كان الجن صالحين.",
+                b: "شرك أكبر.",
+                c: "مكروه.",
+                d: "بدعة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي العزائم والرقى المباحة؟",
+            options: {
+                a: "التي لا يفهم معناها.",
+                b: "ما كان بكلام الله أو أسمائه وصفاته، وباللغة العربية، واعتقاد أنها سبب لا مؤثرة بذاتها.",
+                c: "كل رقية مجربة.",
+                d: "ما كانت من غير القرآن والسنة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي الحقيقة الشرعية للشفاعة؟",
+            options: {
+                a: "طلب الحاجة من الميت مباشرة.",
+                b: "التوسط للغير بجلب نفع أو دفع ضر، وهي لا تكون إلا بإذن الله ورضاه عن الشافع والمشفوع له.",
+                c: "التوسل بالذوات فقط.",
+                d: "الواسطة بين الله وخلقه."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم إقامة الأضرحة والمشاهد على القبور؟",
+            options: {
+                a: "سنة حسنة.",
+                b: "من وسائل الشرك ويجب هدمها.",
+                c: "مكروه فقط.",
+                d: "جائزة لتذكر الموت."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو ضابط الشرك الأصغر؟",
+            options: {
+                a: "ما لا يغفره الله أبداً.",
+                b: "ما ورد في الشرع أنه شرك ولم يبلغ درجة الشرك الأكبر.",
+                c: "ما كان يتعلق بالربوبية.",
+                d: "ما كان من الأفعال الظاهرة فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى الإخلاص؟",
+            options: {
+                a: "إظهار العمل للناس لتقليده.",
+                b: "تجريد القصد لله تعالى في جميع الأعمال الظاهرة والباطنة.",
+                c: "ترك العمل خوفًا من الرياء.",
+                d: "العمل بالسر دون الإعلان عنه."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم اتخاذ القبور مساجد؟",
+            options: {
+                a: "جائز لفضل المكان.",
+                b: "حرام ومن وسائل الشرك.",
+                c: "مكروه.",
+                d: "لا بأس به إذا كان بعيداً عن القبر."
+            },
+            ans: "b"
+        }],
+        cardTitle: "الوحدة 3: التوحيد العملي ومواضيع مختارة",
+        prerequisite: 2
+    },
+
+    // 🔴 الوحدة 4 (20 سؤال)
+    4: {
+        title: "دورة الإتقان في العقيدة الإسلامية: الوحدة 4",
+        subtitle: "النبوة واليوم الآخر",
+        details: {},
+        questions: [
+        {
+            q: "ما هو أول مراحل اليوم الآخر؟",
+            options: {
+                a: "البعث من القبور.",
+                b: "الحساب والميزان.",
+                c: "الصراط.",
+                d: "الخلود في الجنة أو النار."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما معنى الإيمان بالبعث؟",
+            options: {
+                a: "قيام الساعة.",
+                b: "إحياء الله للموتى وإخراجهم من القبور للحساب والجزاء.",
+                c: "نزول عيسى عليه السلام.",
+                d: "حياة البرزخ."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الميزان في اليوم الآخر؟",
+            options: {
+                a: "ميزان معنوي غير حقيقي.",
+                b: "ميزان حقيقي له كفتان توزن به أعمال العباد.",
+                c: "العدل الإلهي في الحكم.",
+                d: "علامة على دخول الجنة."
+            },
+            ans: "b"
+        },
+        {
+            q: "من هم أول من يُبعث يوم القيامة؟",
+            options: {
+                a: "الأنبياء والرسل.",
+                b: "الشهداء.",
+                c: "النبي محمد صلى الله عليه وسلم.",
+                d: "الصحابة الكرام."
+            },
+            ans: "c"
+        },
+        {
+            q: "ما هو الموقف الشرعي من إنكار الشفاعة للنبي صلى الله عليه وسلم؟",
+            options: {
+                a: "صحيح، لأن الشفاعة خاصة بالله.",
+                b: "ضلال، لأن شفاعته ثبتت بالكتاب والسنة.",
+                c: "مكروه فقط.",
+                d: "جائز إذا كان الهدف هو تعظيم الله."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الحوض الذي يُعطاه النبي صلى الله عليه وسلم؟",
+            options: {
+                a: "حوض ماء كبير في الجنة يشرب منه الأنبياء فقط.",
+                b: "حوض ماء عظيم في عرصات القيامة يشرب منه أتباعه قبل دخول الجنة.",
+                c: "نهر الكوثر في الجنة.",
+                d: "مكان يجمع فيه الناس قبل الحساب."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي الشفاعة العظمى؟",
+            options: {
+                a: "الشفاعة للمؤمنين بدخول الجنة.",
+                b: "شفاعة النبي صلى الله عليه وسلم لفصل القضاء بين الخلائق يوم القيامة.",
+                c: "الشفاعة في إخراج الموحدين من النار.",
+                d: "الشفاعة للمذنبين."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو 'الصراط'؟",
+            options: {
+                a: "طريق في الدنيا للمسلمين.",
+                b: "جسر ممدود على متن جهنم يمر عليه الناس يوم القيامة.",
+                c: "طريق إلى الجنة.",
+                d: "ميزان يوزن به العمل."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم إنكار وجود الجنة والنار؟",
+            options: {
+                a: "مكروه.",
+                b: "كفر يخرج من الملة.",
+                c: "بدعة.",
+                d: "لا يؤثر على العقيدة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي علامة نبوة الأنبياء والرسل؟",
+            options: {
+                a: "أنهم أغنياء.",
+                b: "أنهم أُيِّدوا بالمعجزات والآيات الدالة على صدقهم.",
+                c: "أنهم أقوياء البنية.",
+                d: "أنهم من عائلة شريفة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الموقف من عصمة الأنبياء؟",
+            options: {
+                a: "هم معصومون من جميع الذنوب والأخطاء مطلقًا.",
+                b: "هم معصومون في تبليغ رسالة الله، ويجوز عليهم الخطأ في أمور الدنيا أو وقوع الذنب الذي سرعان ما يتوبون منه.",
+                c: "هم ليسوا معصومين مطلقًا.",
+                d: "عصمتهم خاصة بالنبي محمد فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى 'الكرامة' التي تقع لأولياء الله؟",
+            options: {
+                a: "عمل خارق للعادة يجريه الله على يد مدّع للنبوة.",
+                b: "عمل خارق للعادة يجريه الله على يد رجل صالح غير نبي تثبيتاً له.",
+                c: "شيء عادي يحدث يومياً.",
+                d: "ميراث مادي."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الحساب في اليوم الآخر؟",
+            options: {
+                a: "استعراض الأعمال فقط.",
+                b: "وقوف العباد أمام الله لتقرير أعمالهم ومجازاتهم عليها.",
+                c: "وزن الأعمال.",
+                d: "العبور على الصراط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى القنطرة التي تكون بعد الصراط؟",
+            options: {
+                a: "مكان يستريح فيه أهل الجنة قبل الدخول.",
+                b: "مكان يقتص فيه بعض أهل الجنة من بعض مظالم كانت بينهم في الدنيا قبل دخول الجنة.",
+                c: "مكان الحساب.",
+                d: "مكان يجمع فيه الشهداء."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي صفة الجنة والنار؟",
+            options: {
+                a: "مخلوقتان وستفنيان بعد زمن طويل.",
+                b: "مخلوقتان وموجودتان الآن ولا تفنيان أبداً.",
+                c: "ستُخلقان يوم القيامة.",
+                d: "هما حالتان نفسيتان."
+            },
+            ans: "b"
+        },
+        {
+            q: "من هم أول من يدخل الجنة من هذه الأمة؟",
+            options: {
+                a: "الشهداء.",
+                b: "الأنبياء.",
+                c: "فقراء المسلمين.",
+                d: "النبي محمد صلى الله عليه وسلم."
+            },
+            ans: "d"
+        },
+        {
+            q: "ما هي شروط الشفاعة يوم القيامة؟",
+            options: {
+                a: "إذن الله للشافع ورضاه عن المشفوع له.",
+                b: "أن يكون الشافع نبياً فقط.",
+                c: "أن تكون الشفاعة في كل شيء.",
+                d: "ألا يكون هناك حساب أو ميزان."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما هو الموقف من مَن يُنكر السنة النبوية الشريفة؟",
+            options: {
+                a: "لا يؤثر ذلك على إسلامه.",
+                b: "يُخشى عليه من الكفر لأنه أنكر مصدراً من مصادر التشريع.",
+                c: "يُعد مخطئاً في الاجتهاد.",
+                d: "يُعتبر مبتدعاً فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى الإيمان بالقدر الذي يُنسَب إليه فعل الإنسان؟",
+            options: {
+                a: "الإنسان مُجبَر على أفعاله.",
+                b: "أن أفعال العباد خلقٌ لله، وكسبٌ للعباد.",
+                c: "الإنسان خالق لفعله.",
+                d: "الاعتماد على التوفيق الإلهي."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي مراتب القضاء والقدر التي يجب الإيمان بها؟",
+            options: {
+                a: "المعرفة، والمحبة، والخلق، والمشيئة.",
+                b: "العلم، والكتابة، والمشيئة، والخلق.",
+                c: "الربوبية، والألوهية، والأسماء والصفات.",
+                d: "التوحيد، والإيمان، والإحسان."
+            },
+            ans: "b"
+        }],
+        cardTitle: "الوحدة 4: النبوة واليوم الآخر",
+        prerequisite: 3
+    },
+
+// ---------------------------------------------------------------------------------------
+// 🔴 نقطة التوقف - الجزء الأول
+// ---------------------------------------------------------------------------------------
+    // 🔴 الوحدة 5 (20 سؤال)
+    5: {
+        title: "دورة الإتقان في العقيدة الإسلامية: الوحدة 5",
+        subtitle: "أسماء الله الحسنى والقضاء والقدر",
+        details: {},
+        questions: [
+        {
+            q: "ما هو منهج السلف في أسماء الله الحسنى وصفاته؟",
+            options: {
+                a: "التأويل والتحريف.",
+                b: "التعطيل والنفي.",
+                c: "الإثبات بلا تكييف ولا تمثيل، والتنزيه بلا تحريف ولا تعطيل.",
+                d: "القياس على صفات المخلوقين."
+            },
+            ans: "c"
+        },
+        {
+            q: "ما معنى اسم الله 'القدير'؟",
+            options: {
+                a: "الذي يعلم كل شيء.",
+                b: "الذي يحيي ويميت.",
+                c: "الذي له القدرة التامة المطلقة على كل شيء.",
+                d: "الذي يغفر الذنوب فقط."
+            },
+            ans: "c"
+        },
+        {
+            q: "ما هي مراتب القدر الأربعة؟",
+            options: {
+                a: "العلم، والكتابة، والمشيئة، والخلق.",
+                b: "الربوبية، والألوهية، والأسماء والصفات، واليوم الآخر.",
+                c: "الحياة، والموت، والرزق، والسعادة.",
+                d: "القدر، والقضاء، والسبب، والمسبب."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما معنى مراتب القدر (المشيئة)؟",
+            options: {
+                a: "إرادة الإنسان الحرة.",
+                b: "أن كل ما يقع في الكون فهو بمشيئة الله وإرادته الكونية.",
+                c: "إرادة الله الشرعية فقط (الأمر والنهي).",
+                d: "أن الله لا يتدخل في أفعال العباد."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الفرق بين المشيئة الكونية والمشيئة الشرعية؟",
+            options: {
+                a: "هما بمعنى واحد.",
+                b: "الكونية: لا يلزم وقوعها، الشرعية: يلزم وقوعها.",
+                c: "الكونية: يلزم وقوعها (ما أراده الله كونا)، الشرعية: لا يلزم وقوعها (ما يحبه الله ويرضاه).",
+                d: "الشرعية تخص المؤمنين فقط."
+            },
+            ans: "c"
+        },
+        {
+            q: "ما هي الثمرة من الإيمان بأسماء الله وصفاته؟",
+            options: {
+                a: "زيادة المعرفة النظرية فقط.",
+                b: "زيادة محبة الله وتعظيمه وخشيته وحسن عبادته.",
+                c: "القدرة على تفسير كل الأحداث.",
+                d: "الاكتفاء بالتلاوة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى 'التعطيل' في باب الأسماء والصفات؟",
+            options: {
+                a: "نفي الصفات الإلهية أو بعضها عن الله.",
+                b: "إثبات الصفات لله.",
+                c: "تشبيه صفات الله بصفات خلقه.",
+                d: "تغيير معنى الصفة."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما حكم من أنكر صفة من صفات الله الثابتة بالكتاب والسنة؟",
+            options: {
+                a: "لا شيء عليه إذا كان مجتهداً.",
+                b: "يُخشى عليه من الكفر ما لم تقم عليه الحجة.",
+                c: "مكروه فقط.",
+                d: "بدعة حسنة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الدليل على علو الله على خلقه؟",
+            options: {
+                a: "العقل والقياس فقط.",
+                b: "القرآن والسنة وإجماع السلف والفطرة.",
+                c: "تجربة شخصية.",
+                d: "النظر في الفلك."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى الإيمان بصفة 'المحبة' لله تعالى؟",
+            options: {
+                a: "أن الله لا يحب إلا الملائكة.",
+                b: "إثبات صفة المحبة لله كما تليق بجلاله، وأنه يحب أولياءه ويحبونه.",
+                c: "أن المحبة صفة مجازية.",
+                d: "أن الله لا يكره أحداً."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي نتيجة إنكار الإيمان بالقدر؟",
+            options: {
+                a: "زيادة التوكل على الله.",
+                b: "عدم رضا العبد بقضاء الله وقدره.",
+                c: "زيادة الصبر.",
+                d: "قوة الإيمان."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم من قال: 'إن الإنسان يخلق فعله بنفسه'؟",
+            options: {
+                a: "قول صحيح.",
+                b: "قول القدرية المنكرين لمرتبة خلق الأفعال، وهو ضلال.",
+                c: "قول مجتهد مأجور.",
+                d: "قول مكروه."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى الإيمان بمرتبة 'الكتابة' في القدر؟",
+            options: {
+                a: "كتابة المصير في لوح المحفوظ قبل وقوعه.",
+                b: "كتابة الأعمال بعد وقوعها.",
+                c: "كتابة الرزق فقط.",
+                d: "كتابة القرآن فقط."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما هي سنة الله في تغيير الأقدار؟",
+            options: {
+                a: "القدر لا يتغير أبداً.",
+                b: "القدر المبرم لا يتغير، ولكن قد يتغير المعلق بالدعاء أو فعل الأسباب.",
+                c: "كل الأقدار تتغير باستمرار.",
+                d: "تغييرها مستحيل."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى اسم الله 'الرحمن'؟",
+            options: {
+                a: "الرحمة التي لا يشارك فيها أحد.",
+                b: "الرحمة العامة التي تشمل المؤمن والكافر في الدنيا والآخرة.",
+                c: "الرحمة الخاصة بالمؤمنين فقط.",
+                d: "الرحمة الواجبة على الله."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى 'التفويض' في باب الصفات عند السلف؟",
+            options: {
+                a: "تفويض علم المعنى لله.",
+                b: "تفويض علم الكيفية فقط مع إثبات المعنى الظاهر اللائق بالله.",
+                c: "تفويض الصفة كلها لله.",
+                d: "ترك البحث في الصفات نهائياً."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي أفعال الله الاختيارية؟",
+            options: {
+                a: "أفعال لا تتعلق بمشيئته.",
+                b: "ما يفعله الله متى شاء وكيف شاء، مثل النزول والاستواء والضحك والغضب.",
+                c: "خلق السموات والأرض فقط.",
+                d: "صفات ذاتية غير مرتبطة بالمشيئة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الرزق الذي يجب الاعتقاد بأنه مكتوب ومقدر؟",
+            options: {
+                a: "الرزق المادي فقط.",
+                b: "يشمل الرزق المادي والرزق المعنوي كالإيمان والعلم.",
+                c: "الرزق المعنوي فقط.",
+                d: "الرزق الذي يأتي دون سعي."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو موقف أهل السنة من التحسين والتقبيح العقلي؟",
+            options: {
+                a: "العقل يحسّن ويقبّح الأفعال دون الشرع.",
+                b: "الأصل أن الشرع هو الذي يحسّن ويقبّح، والعقل قد يدرك بعض الحسن والقبْح.",
+                c: "لا دور للعقل في إدراك الحسن والقبْح.",
+                d: "الحسن والقبْح يرجع إلى الهوى."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي القاعدة الذهبية في صفات الله؟",
+            options: {
+                a: "التأويل أصل العقيدة.",
+                b: "كل ما خطر ببالك فالله خلاف ذلك.",
+                c: "تشبيه الخالق بالمخلوق.",
+                d: "الإنكار الكامل لصفات الله."
+            },
+            ans: "b"
+        }],
+        cardTitle: "الوحدة 5: أسماء الله الحسنى والقضاء والقدر",
+        prerequisite: 4
+    },
+    
+    // 🔴 الوحدة 6 (20 سؤال)
+    6: {
+        title: "دورة الإتقان في العقيدة الإسلامية: الوحدة 6",
+        subtitle: "الفرقة الناجية وأصول التعامل",
+        details: {},
+        questions: [
+        {
+            q: "من هم الفرقة الناجية التي أمرنا الرسول صلى الله عليه وسلم باتباعها؟",
+            options: {
+                a: "السلفيون فقط.",
+                b: "أهل السنة والجماعة (من كان على مثل ما أنا عليه اليوم وأصحابي).",
+                c: "جميع المسلمين.",
+                d: "الذين يعتقدون في الإيمان بالقدر فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الاسم الآخر للفرقة الناجية؟",
+            options: {
+                a: "الشيعة.",
+                b: "أهل الحديث والأثر.",
+                c: "الجهمية.",
+                d: "الخوارج."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو أساس اجتماع أهل السنة والجماعة؟",
+            options: {
+                a: "النسب والقبيلة.",
+                b: "العقيدة الصحيحة المأخوذة من الكتاب والسنة.",
+                c: "البلد والوطن.",
+                d: "العصبية الحزبية."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو منهج أهل السنة في الحكم على الناس؟",
+            options: {
+                a: "الحكم بالظنون والتخمينات.",
+                b: "الحكم بالظاهر وتوكيل السرائر إلى الله.",
+                c: "الخوض في النيات.",
+                d: "اتباع الهوى."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو واجب المسلم نحو أئمة المسلمين وولاة الأمر؟",
+            options: {
+                a: "الخروج عليهم إذا أخطأوا.",
+                b: "طاعتهم في المعروف وعدم الخروج عليهم والصبر على ما يصدر منهم.",
+                c: "سبهم علناً.",
+                d: "طاعتهم في كل شيء مطلقاً."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي أبرز صفة تميز منهج أهل السنة والجماعة في التعامل؟",
+            options: {
+                a: "الشدة والغلظة.",
+                b: "العدل والإنصاف والاتباع والبعد عن الابتداع.",
+                c: "التهاون في العقيدة.",
+                d: "التشدد في الفروع."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو موقف أهل السنة من التفرق والاختلاف؟",
+            options: {
+                a: "يشجعون على التفرق المذهبي.",
+                b: "يأمرون بالاجتماع على الحق ويحذرون من التفرق والتحزب في الدين.",
+                c: "يعتبرون الاختلاف رحمة مطلقة.",
+                d: "يتبعون كل فرقة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي سمة أهل السنة والجماعة في تلقي الأخبار؟",
+            options: {
+                a: "قبول كل ما يشاع.",
+                b: "التثبت في النقل والتحري في الرواية.",
+                c: "الاعتماد على الرؤى والأحلام.",
+                d: "تقديم العقل على النقل."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم الخروج على ولاة الأمر المسلمين؟",
+            options: {
+                a: "واجب إذا رأينا منهم خطأ.",
+                b: "محرّم ومنهج الخوارج، حتى لو جاروا أو ظلموا ما لم يظهروا الكفر البواح.",
+                c: "جائز لتغيير المنكر.",
+                d: "مكروه فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى 'الجماعة' في مصطلح أهل السنة والجماعة؟",
+            options: {
+                a: "أهل البلد الواحد.",
+                b: "ما اجتمع عليه السلف الصالح وعلماء الأمة.",
+                c: "الحزب السياسي المسيطر.",
+                d: "الكثرة العددية."
+            },
+            ans: "b"
+        },
+        {
+            q: "كيف يجب أن يكون التعامل مع أهل الأهواء والبدع؟",
+            options: {
+                a: "يجب مصاحبتهم وملازمتهم.",
+                b: "هجرهم ومجانبتهم للتحذير منهم وصيانة العقيدة (بشروط شرعية).",
+                c: "التغاضي عن أخطائهم تماماً.",
+                d: "التعامل معهم كأهل السنة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الركن الأساسي الذي تختلف فيه أهل السنة عن الفرق الضالة؟",
+            options: {
+                a: "الصلاة.",
+                b: "التمسك بالكتاب والسنة بفهم السلف الصالح في العقائد.",
+                c: "الصيام.",
+                d: "الزكاة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم إجماع السلف في مسائل العقيدة؟",
+            options: {
+                a: "ليس له قيمة.",
+                b: "حجة يجب الأخذ بها ولا يجوز مخالفتها.",
+                c: "جائز مخالفته بالاجتهاد.",
+                d: "يُعمل به في الفروع دون الأصول."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي قاعدة أهل السنة في التكفير؟",
+            options: {
+                a: "التسرع في التكفير.",
+                b: "لا يكفرون أحداً من أهل القبلة بذنب، ولا يكفرون المعين إلا بعد قيام الحجة وانتفاء الموانع.",
+                c: "كل من أخطأ فهو كافر.",
+                d: "التكفير للجمهور فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الواجب نحو علماء أهل السنة؟",
+            options: {
+                a: "تقليدهم دون دليل.",
+                b: "احترامهم وتوقيرهم والأخذ بأقوالهم ما لم تخالف الكتاب والسنة.",
+                c: "الطعن فيهم.",
+                d: "مقارنتهم بالصحابة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو ضابط الأمر بالمعروف والنهي عن المنكر عند أهل السنة؟",
+            options: {
+                a: "وجوبه في كل حال حتى لو أدى لفتنة أكبر.",
+                b: "يكون بالرفق والحكمة والتدرج، وأن لا يؤدي إلى مفسدة أكبر.",
+                c: "يكون بالسيف والخروج على الحاكم.",
+                d: "خاص بالعلماء فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي البدعة المكفرة؟",
+            options: {
+                a: "كل بدعة.",
+                b: "البدعة التي تتضمن شركاً أكبر أو جحوداً لمعلوم من الدين بالضرورة.",
+                c: "البدعة التي لا دليل عليها.",
+                d: "البدعة التي تتعلق بالصلاة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو موقف أهل السنة من المجادلة والمخاصمة في الدين؟",
+            options: {
+                a: "تشجيعها دائماً.",
+                b: "تحذير من الخوض فيها بلا علم ولا دليل شرعي، وخاصة في العقائد.",
+                c: "اعتبارها من شروط الإيمان.",
+                d: "جوازها مطلقاً."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي ميزة المنهج السلفي في التعامل مع الخلاف؟",
+            options: {
+                a: "التعصب للرأي.",
+                b: "الالتزام بالدليل وتقديم النصوص على آراء الرجال.",
+                c: "العمل بالقول الأشد دائماً.",
+                d: "الاعتماد على الكثرة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو حكم مظاهرة الكفار على المسلمين؟",
+            options: {
+                a: "معصية عادية.",
+                b: "مكروه.",
+                c: "كفر أكبر يخرج من الملة.",
+                d: "جائز لضرورة سياسية."
+            },
+            ans: "c"
+        }],
+        cardTitle: "الوحدة 6: الفرقة الناجية وأصول التعامل",
+        prerequisite: 5
+    },
+
+    // 🔴 الوحدة 7 (20 سؤال)
+    7: {
+        title: "دورة الإتقان في العقيدة الإسلامية: الوحدة 7",
+        subtitle: "مسائل الإيمان والكفر",
+        details: {},
+        questions: [
+        {
+            q: "ما هو مذهب أهل السنة والجماعة في الإيمان؟",
+            options: {
+                a: "قول باللسان واعتقاد بالجنان فقط.",
+                b: "تصديق بالقلب فقط.",
+                c: "قول باللسان، واعتقاد بالجنان، وعمل بالجوارح، يزيد بالطاعة وينقص بالمعصية.",
+                d: "العمل بالجوائح فقط."
+            },
+            ans: "c"
+        },
+        {
+            q: "هل الكبائر تخرج صاحبها من الملة عند أهل السنة والجماعة؟",
+            options: {
+                a: "نعم تخرج من الملة.",
+                b: "لا تخرج من الملة، بل هو مؤمن ناقص الإيمان تحت مشيئة الله.",
+                c: "لا تضر مع الإيمان.",
+                d: "هي تخرج من الإسلام ولا تخرج من الإيمان."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما الفرق بين الإسلام والإيمان إذا اجتمعا في الذكر؟",
+            options: {
+                a: "لا فرق بينهما.",
+                b: "الإسلام يتعلق بالأعمال الظاهرة، والإيمان بالأعمال الباطنة (الاعتقاد).",
+                c: "الإسلام خاص بالأنبياء، والإيمان خاص بالصالحين.",
+                d: "الإيمان هو التصديق، والإسلام هو العمل فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي ضابط التكفير عند أهل السنة والجماعة؟",
+            options: {
+                a: "التكفير يكون لكل من خالف رأي الأغلبية.",
+                b: "لا يُكفَّر المعيَّن إلا بعد قيام الحجة وانتفاء الموانع.",
+                c: "كل من ارتكب كبيرة فهو كافر.",
+                d: "التكفير يكون بالظن والتخمين."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم الاستهزاء بالدين أو القرآن أو الرسول صلى الله عليه وسلم؟",
+            options: {
+                a: "بدعة مكروهة.",
+                b: "كفر أكبر مخرج من الملة.",
+                c: "معصية عادية.",
+                d: "لا يؤثر على الإيمان."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى الإرجاء؟",
+            options: {
+                a: "تأخير العمل عن الإيمان.",
+                b: "الاعتقاد بأن العمل ليس داخلاً في مسمى الإيمان، وأن الإيمان لا يزيد ولا ينقص.",
+                c: "الاعتماد على العقل في الأمور الغيبية.",
+                d: "عدم تكفير مرتكب الكبيرة."
+            },
+            ans: "b"
+        },
+        {
+            q: "هل ينقص الإيمان بالمعصية عند أهل السنة؟",
+            options: {
+                a: "لا ينقص.",
+                b: "نعم ينقص الإيمان بارتكاب المعصية ويقوى بالطاعة.",
+                c: "ينقص فقط عند استحلال المعصية.",
+                d: "ينقص إذا كانت المعصية في السر."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو ضابط الكفر العملي الذي لا يخرج من الملة؟",
+            options: {
+                a: "كل ما سماه الشارع كفراً ولم يدل دليل على أنه الكفر الأكبر.",
+                b: "أي عمل كفر.",
+                c: "ما كان في الظاهر فقط.",
+                d: "ما كان باللسان فقط."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما هو النفاق الأصغر؟",
+            options: {
+                a: "إظهار الإيمان وإبطان الكفر.",
+                b: "الاختلاف بين السر والعلن في بعض السلوكيات، مثل الكذب في الحديث أو إخلاف الوعد.",
+                c: "الشرك الأكبر.",
+                d: "عدم محبة الرسول صلى الله عليه وسلم."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم سب الله أو الرسول صلى الله عليه وسلم؟",
+            options: {
+                a: "كبيرة من الكبائر.",
+                b: "كفر أكبر مخرج من الملة.",
+                c: "مكروه.",
+                d: "يوجب التوبة فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى 'مُسيئون موحِّدون'؟",
+            options: {
+                a: "وصف لأهل الإرجاء.",
+                b: "وصف لمن ارتكبوا الكبائر وماتوا موحدين (مؤمن ناقص الإيمان).",
+                c: "وصف للصحابة.",
+                d: "وصف للكفار."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الموقف من الجهمية في مسائل الإيمان؟",
+            options: {
+                a: "مذهب أهل السنة.",
+                b: "من الفرق الضالة التي تعتبر الإيمان مجرد التصديق بالقلب فقط.",
+                c: "فرقة لا وجود لها.",
+                d: "أصحاب مذهب الإرجاء."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم من ترك الصلاة بالكلية مع إقراره بوجوبها؟",
+            options: {
+                a: "كافر عند بعض أهل السنة (كالحنابلة) وعاصي عند آخرين.",
+                b: "مؤمن كامل الإيمان.",
+                c: "لا يُعد ذنباً.",
+                d: "مكروه فقط."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما هو الإيمان المطلق؟",
+            options: {
+                a: "إيمان الكفار.",
+                b: "الإيمان الكامل الذي لا نقص فيه، إيمان الأنبياء والصدّيقين.",
+                c: "الإيمان الناقص.",
+                d: "إيمان العامة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى 'تلازم الظاهر والباطن' في الإيمان؟",
+            options: {
+                a: "إذا فسد الباطن لا يضر الظاهر.",
+                b: "الإيمان الباطن يستلزم وجود عمل ظاهر، وإذا انتفى العمل الظاهر بالكلية انتفى الإيمان الباطن.",
+                c: "الإيمان الظاهر لا علاقة له بالباطن.",
+                d: "النية الطيبة تكفي عن العمل."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم من أنكر فرضية ركن من أركان الإسلام الخمسة وهو يعيش بين المسلمين؟",
+            options: {
+                a: "يُعتبر جاهلاً ويعذر.",
+                b: "يُعتبر كافراً لخروجه عن معلوم من الدين بالضرورة.",
+                c: "يُعد فاسقاً.",
+                d: "يُعد مبتدعاً فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "هل إبليس مؤمن عند أهل السنة؟",
+            options: {
+                a: "نعم، لأنه صدق بوجود الله.",
+                b: "لا، لأنه لم يمتثل للأمر ولم يعمل بجوارحه، فإيمانه مجرد إقرار لم ينفعه.",
+                c: "مؤمن ناقص الإيمان.",
+                d: "مسلم وليس مؤمن."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الكفر الاعتقادي؟",
+            options: {
+                a: "كفر بالعمل الظاهر فقط.",
+                b: "كفر يتعلق بالقلب كالتكذيب أو الشك في أصل من أصول الدين.",
+                c: "كفر بترك السنن.",
+                d: "كفر بسب المسلم."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي القاعدة في تكفير المعين؟",
+            options: {
+                a: "التكفير يكون بمجرد الوقوع في الكفر.",
+                b: "القول يُكفَّر به ولا يُكفَّر قائله إلا بوجود الشروط وانتفاء الموانع.",
+                c: "كل من قال كلمة كفر فهو كافر مباشرة.",
+                d: "لا يُكفَّر أحد من أهل القبلة أبداً."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم إظهار النفاق الأصغر؟",
+            options: {
+                a: "يُعد شركاً أكبر.",
+                b: "معصية وكبيرة من كبائر الذنوب لا تخرج من الملة.",
+                c: "لا يؤثر على الإيمان.",
+                d: "مكروه فقط."
+            },
+            ans: "b"
+        }],
+        cardTitle: "الوحدة 7: مسائل الإيمان والكفر",
+        prerequisite: 6
+    },
+
+    // 🔴 الوحدة 8 (20 سؤال)
+    8: {
+        title: "دورة الإتقان في العقيدة الإسلامية: الوحدة 8",
+        subtitle: "الأنبياء والصحابة",
+        details: {},
+        questions: [
+        {
+            q: "ما هو منهج أهل السنة والجماعة في التعامل مع ما قد يظهر من خلافات بين الصحابة؟",
+            options: {
+                a: "الخوض في تفاصيلها وبيان المخطئ.",
+                b: "تأويل جميع أفعالهم بما يوافق منهجنا.",
+                c: "الإمساك عما شجر بينهم، والدعاء لهم، واعتقاد أنهم مأجورون.",
+                d: "اعتبار من أخطأ منهم ليس بصحابي."
+            },
+            ans: "c"
+        },
+        {
+            q: "ما هي منزلة النبي محمد صلى الله عليه وسلم؟",
+            options: {
+                a: "أنه أول المخلوقات.",
+                b: "أنه بشر أرسله الله، وهو خاتم الأنبياء وأفضلهم.",
+                c: "أنه نور من نور الله.",
+                d: "أنه إله مع الله."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي معجزة النبي صلى الله عليه وسلم الخالدة؟",
+            options: {
+                a: "انشقاق القمر.",
+                b: "نزول المطر.",
+                c: "القرآن الكريم.",
+                d: "الإسراء والمعراج."
+            },
+            ans: "c"
+        },
+        {
+            q: "من هو أفضل الصحابة على الإطلاق؟",
+            options: {
+                a: "عمر بن الخطاب.",
+                b: "علي بن أبي طالب.",
+                c: "أبو بكر الصديق.",
+                d: "عثمان بن عفان."
+            },
+            ans: "c"
+        },
+        {
+            q: "ما هو واجبنا نحو الأنبياء والرسل؟",
+            options: {
+                a: "اعتقاد أنهم لا يخطئون أبداً.",
+                b: "الإيمان بهم جميعاً وطاعة آخرهم (محمد صلى الله عليه وسلم).",
+                c: "الاكتفاء بالإيمان بمحمد صلى الله عليه وسلم فقط.",
+                d: "تعظيمهم دون طاعة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما معنى 'العدالة' عند أهل السنة في حق الصحابة؟",
+            options: {
+                a: "أنهم معصومون من الخطأ.",
+                b: "أنهم جميعاً عدول فيما يروونه عن النبي صلى الله عليه وسلم.",
+                c: "أنهم متساوون في الفضل والمنزلة.",
+                d: "أنهم لم يرتكبوا أي ذنب بعد إسلامهم."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي الترتيب الصحيح للخلفاء الراشدين في الفضل؟",
+            options: {
+                a: "عمر، عثمان، أبو بكر، علي.",
+                b: "أبو بكر، عمر، عثمان، علي.",
+                c: "علي، عثمان، عمر، أبو بكر.",
+                d: "عثمان، أبو بكر، عمر، علي."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو موقف أهل السنة من ذنوب الأنبياء التي قد تقع منهم؟",
+            options: {
+                a: "إنكارها مطلقاً.",
+                b: "وقوعها منهم نادرًا، ولا تتعلق بالتبليغ، وهم معصومون من الإقرار عليها، ويتوبون منها.",
+                c: "أنهم يذنبون كعامة الناس.",
+                d: "أنها لا تُعد ذنوباً."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم سب أحد من الصحابة الكرام؟",
+            options: {
+                a: "معصية خفيفة.",
+                b: "محرّم وهو جرح في عدالة الرواية ويُخشى على صاحبه من الضلال.",
+                c: "مكروه.",
+                d: "بدعة حسنة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي وظيفة الرسول صلى الله عليه وسلم إلى الناس؟",
+            options: {
+                a: "ملك من الملائكة.",
+                b: "البلاغ المبين والبيان، والرحمة المهداة، والقدوة الحسنة.",
+                c: "القيادة الدنيوية فقط.",
+                d: "الخلاص من الذنوب."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي آية عظيمة تدل على وجوب الإيمان بجميع الرسل دون تفريق؟",
+            options: {
+                a: "(قُلْ هُوَ اللَّهُ أَحَدٌ).",
+                b: "(آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِّن رُّسُلِهِ).",
+                c: "(لَيْسَ كَمِثْلِهِ شَيْءٌ).",
+                d: "(إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ)."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي صفة الصدق في حق الرسل؟",
+            options: {
+                a: "إمكانية الكذب في بعض الأمور.",
+                b: "وجوب صدقهم في كل ما يبلغونه عن الله.",
+                c: "يُصدقون في أمور الدنيا فقط.",
+                d: "يُصدقون بالمعجزات فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "لماذا أمرنا النبي صلى الله عليه وسلم بالتمسك بسنته وسنة الخلفاء الراشدين؟",
+            options: {
+                a: "لأنها أحدثت في الدين.",
+                b: "لأنها تمثل الفهم الصحيح للكتاب والسنة بعده.",
+                c: "لأنها أسهل في التطبيق.",
+                d: "لأنها تعارض السنة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو تعريف 'الصحابي'؟",
+            options: {
+                a: "من رأى النبي صلى الله عليه وسلم فقط.",
+                b: "كل من لقي النبي صلى الله عليه وسلم مؤمناً به ومات على الإسلام.",
+                c: "من رافق النبي صلى الله عليه وسلم عشر سنوات.",
+                d: "من كان من المهاجرين فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي القاعدة الشرعية في محبة الصحابة؟",
+            options: {
+                a: "تجوز محبة بعضهم دون بعض.",
+                b: "تجب محبة جميع الصحابة ورضي الله عنهم والترضي عليهم.",
+                c: "محبتهم مستحبة وليست واجبة.",
+                d: "محبتهم للمهاجرين والأنصار فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الغرض من إرسال الرسل؟",
+            options: {
+                a: "السيطرة على الأرض.",
+                b: "دعوة الناس إلى عبادة الله وحده والتحذير من الشرك وبيان الشرائع.",
+                c: "جمع الأموال.",
+                d: "القيام بالمعجزات فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم الغلو في الأنبياء والصالحين؟",
+            options: {
+                a: "جائز لتعظيمهم.",
+                b: "حرام ومن وسائل الشرك إذا أدى إلى عبادتهم من دون الله.",
+                c: "مكروه.",
+                d: "مباح ما لم يصبهم مكروه."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو موقف أهل السنة من عقيدة الإمامة عند بعض الفرق؟",
+            options: {
+                a: "يرون أنها ركن من أركان الإيمان.",
+                b: "يرونها مسألة فقهية تتعلق بنظام الحكم ولا تدخل في العقائد.",
+                c: "يعتبرونها من أركان الإسلام.",
+                d: "ينكرون وجود الإمامة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الدليل على عصمة النبي صلى الله عليه وسلم في البلاغ؟",
+            options: {
+                a: "قول الصحابة فقط.",
+                b: "قوله تعالى: (وَمَا يَنطِقُ عَنِ الْهَوَىٰ ۝ إِنْ هُوَ إِلَّا وَحْيٌ يُوحَىٰ).",
+                c: "إجماع العلماء فقط.",
+                d: "الرؤى والأحلام."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم الطعن في معاوية بن أبي سفيان رضي الله عنه؟",
+            options: {
+                a: "جائز لأنه أخطأ.",
+                b: "محرّم لأنه صحابي، والطعن في الصحابة من شأن أهل البدع.",
+                c: "مكروه.",
+                d: "لا يضر العقيدة."
+            },
+            ans: "b"
+        }],
+        cardTitle: "الوحدة 8: الأنبياء والصحابة",
+        prerequisite: 7
+    },
+
+    // 🔴 الوحدة 9 (20 سؤال)
+    9: {
+        title: "دورة الإتقان في العقيدة الإسلامية: الوحدة 9",
+        subtitle: "البدعة وموقف السلف",
+        details: {},
+        questions: [
+        {
+            q: "ما هي القاعدة الشرعية المتعلقة بالبدع؟",
+            options: {
+                a: "لا يوجد بدعة حسنة.",
+                b: "كل بدعة في العبادات ضلالة.",
+                c: "لا يوجد بدعة في العقائد.",
+                d: "كل بدعة ضلالة وإن رآها الناس حسنة."
+            },
+            ans: "d"
+        },
+        {
+            q: "ما هي البدعة في الاصطلاح الشرعي؟",
+            options: {
+                a: "كل أمر مستحدث في أمور الدنيا.",
+                b: "طريقة في الدين مخترعة تضاهي الشرعية يقصد بالسلوك عليها المبالغة في التعبد لله.",
+                c: "كل ما لم يفعله الصحابة.",
+                d: "الاجتهاد في العبادات."
+            },
+            ans: "b"
+        },
+        {
+            q: "هل يجوز الزيادة على العبادات الثابتة في الشرع؟",
+            options: {
+                a: "نعم، بقصد التقرب لله.",
+                b: "لا يجوز، وتعد زيادة في الدين وهي من البدع.",
+                c: "يُجوز إذا لم يغير شكل العبادة الأصلي.",
+                d: "يُجوز إذا كانت العبادة نافلة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الأثر السلبي للبدعة على السنن؟",
+            options: {
+                a: "لا يوجد أثر.",
+                b: "البدعة تقضي على السنة وتميتها تدريجياً.",
+                c: "البدعة تزيد من تمسك الناس بالسنة.",
+                d: "البدعة تقوي العقيدة."
+            },
+            ans: "b"
+        },
+        {
+            q: "من هو أول من أحدث البدع العملية في الأمة؟",
+            options: {
+                a: "الخوارج.",
+                b: "الشيعة.",
+                c: "القدرية.",
+                d: "العلماء المتأخرون."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما هو حكم المبتدع عند أهل السنة؟",
+            options: {
+                a: "يُكفّر دائماً.",
+                b: "يُعامل كعاصي، وتفصيل حكمه يعود إلى نوع البدعة (مكفّرة أو غير مكفّرة).",
+                c: "يُعامل معاملة الكافر الأصلي.",
+                d: "لا يُعاتب ولا يُنصح."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو ضابط البدعة الإضافية؟",
+            options: {
+                a: "ما أحدث في أصل العبادة.",
+                b: "ما ثبت أصله في الشرع ولكن زيد فيه قيد أو كيفية لم تأت بها السنة.",
+                c: "ما كان في العقائد فقط.",
+                d: "ما كان في أمور الدنيا."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي البدعة الحقيقية (التركية)؟",
+            options: {
+                a: "الزيادة في العبادة.",
+                b: "ترك عبادة مشروعة اعتقاداً منه أن هذا الترك قربة.",
+                c: "الاكتفاء بالفرائض.",
+                d: "ترك المعاصي."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو موقف السلف من أهل الأهواء؟",
+            options: {
+                a: "مصاحبتهم ومداهنتهم.",
+                b: "التحذير منهم وهجرهم وعدم الأخذ عنهم.",
+                c: "الاستفادة منهم في الفروع.",
+                d: "التغاضي عن بدعهم."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو سبب ظهور أغلب البدع في التاريخ الإسلامي؟",
+            options: {
+                a: "الجهل بالدين والتعصب للآراء وتقليد العادات.",
+                b: "التقدم الحضاري.",
+                c: "الحروب والنزاعات.",
+                d: "التشدد في الدين."
+            },
+            ans: "a"
+        },
+        {
+            q: "ما حكم إحياء الموالد والاحتفالات الدينية غير المشروعة؟",
+            options: {
+                a: "سنة حسنة.",
+                b: "بدعة، وكل بدعة ضلالة.",
+                c: "جائز لتذكر النبي.",
+                d: "مكروه فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "هل البدعة توبة؟",
+            options: {
+                a: "نعم، كل بدعة يُتاب منها.",
+                b: "لا تُقبل منها التوبة.",
+                c: "البدعة المكفرة لا توبة منها.",
+                d: "توبة المبتدع صعبة جداً وتلزم إعلانه بتوبته عن بدعته."
+            },
+            ans: "d"
+        },
+        {
+            q: "ما معنى البدعة اللغوية؟",
+            options: {
+                a: "كل ما أحدث في الدين.",
+                b: "ما أُحدث على غير مثال سابق، وتكون في أمور الدنيا أو الدين غير العبادات.",
+                c: "ما لم يفعله الصحابة.",
+                d: "كل ما ورد في القرآن."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الدليل على التحذير من البدع؟",
+            options: {
+                a: "الإجماع فقط.",
+                b: "حديث 'كل محدثة بدعة وكل بدعة ضلالة'.",
+                c: "الرأي الشخصي.",
+                d: "عدم وجود فائدة للبدعة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو موقف أهل السنة من الاستحسان (رؤية الشيء حسناً)؟",
+            options: {
+                a: "العمل به في كل شيء.",
+                b: "لا يعتمدون عليه في التشريع إلا ما وافق نصاً شرعياً.",
+                c: "اعتماده في العقائد.",
+                d: "هو دليل شرعي مستقل."
+            },
+            ans: "b"
+        },
+        {
+            q: "هل يصح اعتبار المصالح المرسلة بدعة حسنة؟",
+            options: {
+                a: "نعم دائماً.",
+                b: "لا، المصالح المرسلة ليست بدعة، بل هي إلحاق فروع لم ينص عليها بنصوص عامة، ولا تكون في العبادات.",
+                c: "إذا كانت في العقائد نعم.",
+                d: "إذا وافقت الهوى."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي البدعة القولية؟",
+            options: {
+                a: "فعل جديد في العبادة.",
+                b: "قول يُحدث في الدين دون دليل، كأقوال الفرق الضالة.",
+                c: "سكوت عن الحق.",
+                d: "الاجتهاد بالرأي."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو أصل بدعة الخوارج؟",
+            options: {
+                a: "إنكار القدر.",
+                b: "اعتقاد أن مرتكب الكبيرة كافر مُخلد في النار.",
+                c: "تأويل الصفات الإلهية.",
+                d: "إرجاء العمل عن الإيمان."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو أصل بدعة المرجئة؟",
+            options: {
+                a: "القول بخلق القرآن.",
+                b: "تأخير العمل عن مسمى الإيمان، والقول بأن الإيمان لا يزيد ولا ينقص.",
+                c: "إنكار الشفاعة.",
+                d: "الغلو في الأنبياء."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو حكم قراءة الفاتحة بعد الدعاء في غير المواضع التي وردت فيها؟",
+            options: {
+                a: "سنة.",
+                b: "بدعة إضافية.",
+                c: "مكروه فقط.",
+                d: "مباح."
+            },
+            ans: "b"
+        }],
+        cardTitle: "الوحدة 9: البدعة وموقف السلف",
+        prerequisite: 8
+    },
+
+    // 🔴 الوحدة 10 (20 سؤال)
+    10: {
+        title: "دورة الإتقان في العقيدة الإسلامية: الوحدة 10",
+        subtitle: "ملخص الدورة ومفاهيم ختامية",
+        details: {},
+        questions: [
+        {
+            q: "ما هي أهم قاعدة في التلقي عند أهل السنة والجماعة؟",
+            options: {
+                a: "تقديم العقل على النقل عند التعارض.",
+                b: "تقديم أقوال الأئمة على الكتاب والسنة.",
+                c: "الاعتماد على الكتاب والسنة بفهم سلف الأمة.",
+                d: "الاجتهاد المطلق لكل شخص."
+            },
+            ans: "c"
+        },
+        {
+            q: "ما هو الموقف من النصوص الشرعية المتشابهة في الصفات؟",
+            options: {
+                a: "تأويلها بما يوافق العقل.",
+                b: "إثبات ما أثبته الله لنفسه مع التفويض في الكيفية (التسليم للمعنى وعدم السؤال عن الكيف).",
+                c: "نفيها وتعطيلها.",
+                d: "تشبيهها بصفات المخلوقين."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الموقف من أهل الأهواء والبدع؟",
+            options: {
+                a: "مصاحبتهم وملازمتهم.",
+                b: "هجرهم ومجانبتهم للتحذير منهم وصيانة العقيدة.",
+                c: "الاشتغال بهم وترك طلب العلم.",
+                d: "التعامل معهم كأهل السنة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الأساس الذي تبنى عليه العقيدة الإسلامية؟",
+            options: {
+                a: "العادات والتقاليد.",
+                b: "القياس والاجتهاد الشخصي.",
+                c: "الوحي (الكتاب والسنة).",
+                d: "آراء الفلاسفة."
+            },
+            ans: "c"
+        },
+        {
+            q: "ما هي مكانة السنة النبوية الشريفة؟",
+            options: {
+                a: "لا قيمة لها في مقابل القرآن.",
+                b: "هي المصدر الثاني للتشريع، وهي مبينة ومفسرة للقرآن.",
+                c: "تُعتبر من باب الترف الفكري.",
+                d: "لا يجب العمل بها إلا إذا وافقت العقل."
+            },
+            ans: "b"
+        },
+        {
+            q: "كيف يتحقق التوحيد؟",
+            options: {
+                a: "بمجرد القول باللسان.",
+                b: "بتحقيق شروطه وأركانه والبعد عن نواقضه ومناقضاته.",
+                c: "بالاعتقاد دون عمل.",
+                d: "بالعمل دون اعتقاد."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي أول خطوة في طلب العلم الشرعي؟",
+            options: {
+                a: "حفظ القرآن الكريم.",
+                b: "تصحيح العقيدة والتوحيد.",
+                c: "الاهتمام بالفقه فقط.",
+                d: "دراسة علوم اللغة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي أهمية التوحيد في حياة المسلم؟",
+            options: {
+                a: "إنه يزيل الفقر.",
+                b: "هو مفتاح النجاة والسعادة في الدنيا والآخرة وشرط لقبول جميع الأعمال.",
+                c: "يُحسن الحالة النفسية فقط.",
+                d: "يجعل الإنسان أكثر ذكاءً."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما حكم الاستدلال بالضعيف أو الموضوع في العقيدة؟",
+            options: {
+                a: "جائز في العقائد دون الفقه.",
+                b: "لا يجوز مطلقاً، فمصادر العقيدة الصحيحة هي الكتاب والسنة الصحيحة والإجماع الصحيح.",
+                c: "يُستحب في فضائل الأعمال.",
+                d: "جائز إذا كان له شاهد من العقل."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو ضابط التوسل المشروع؟",
+            options: {
+                a: "التوسل بذوات الأموات الصالحين.",
+                b: "التوسل بأسماء الله وصفاته، وبالأعمال الصالحة، وبدعاء الرجل الصالح الحي الحاضر.",
+                c: "التوسل بالقبور والأضرحة.",
+                d: "التوسل بجميع المخلوقات."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي أعظم أنواع المحبة التي يجب إفرادها لله؟",
+            options: {
+                a: "محبة الرحمة.",
+                b: "محبة العبادة والتعظيم والذل.",
+                c: "محبة الصداقة.",
+                d: "محبة الطبع والعاطفة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الإحسان؟",
+            options: {
+                a: "ركن من أركان الإيمان.",
+                b: "أعلى مراتب الدين، وهو أن تعبد الله كأنك تراه، فإن لم تكن تراه فإنه يراك.",
+                c: "الإسلام فقط.",
+                d: "طلب الكمال."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو موقف أهل السنة من الخرافات والغيبيات غير المثبتة شرعاً؟",
+            options: {
+                a: "الاعتقاد بها تعظيماً للدين.",
+                b: "رفضها وعدم الاعتماد إلا على ما ثبت بالدليل الشرعي الصحيح.",
+                c: "الاعتماد عليها إذا كانت منتشرة.",
+                d: "تأويلها بما يوافق العقل."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي الوظيفة الأساسية للعقل في العقيدة؟",
+            options: {
+                a: "جعل العقل هو المصدر الأول للعقيدة.",
+                b: "فهم النصوص الشرعية وتدبرها، وليس هو المشرع أو المقنن في الغيبيات.",
+                c: "تأويل النصوص لكي توافق العقل.",
+                d: "إنكار ما لا يفهمه العقل."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو حكم التكذيب بحديث آحاد صحيح في العقائد؟",
+            options: {
+                a: "جائز.",
+                b: "لا يجوز، فالاحتجاج بحديث الآحاد في العقيدة صحيح عند أهل السنة إذا صح سنده.",
+                c: "مكروه.",
+                d: "يُستدل به في الفروع فقط."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الأثر الذي يتركه تطبيق المنهج السلفي على الوحدة؟",
+            options: {
+                a: "يزيد من التفرق.",
+                b: "يوحّد المسلمين على الكتاب والسنة الصحيحة وإجماع السلف.",
+                c: "يؤدي إلى التعصب الحزبي.",
+                d: "يُقسّم الأمة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي حقيقة الدنيا عند أهل السنة؟",
+            options: {
+                a: "هي دار قرار وبقاء.",
+                b: "هي دار ممر وعبور إلى الآخرة.",
+                c: "هي دار اختبار لا يترتب عليها جزاء.",
+                d: "هي الجنة المعجلة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هي أسباب الضلال في العقيدة؟",
+            options: {
+                a: "الاعتزاز بالدين.",
+                b: "الجهل بالشرع، والتعصب للرأي، واتباع الهوى، وتقليد الآباء والأجداد على غير هدى.",
+                c: "التفكر في خلق الله.",
+                d: "حب الصحابة."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو الطريق الوحيد لمعرفة الغيب؟",
+            options: {
+                a: "العقل والمنطق.",
+                b: "الوحي (الكتاب والسنة).",
+                c: "الكشف والذوق الصوفي.",
+                d: "الاجتهاد الشخصي."
+            },
+            ans: "b"
+        },
+        {
+            q: "ما هو معنى التمسك بالمنهج السلفي؟",
+            options: {
+                a: "التعصب لآراء علماء السلف.",
+                b: "السير على منهاج النبي صلى الله عليه وسلم وأصحابه ومن تبعهم في كل أبواب الدين اعتقاداً وقولاً وعملاً.",
+                c: "اقتصار العمل على القرون الثلاثة الأولى.",
+                d: "ترك الاجتهاد مطلقاً."
+            },
+            ans: "b"
+        }],
+        cardTitle: "الوحدة 10: ملخص الدورة ومفاهيم ختامية",
+        prerequisite: 9
+    }
+};
+
+        // ستتم إضافة الأسئلة هنا يدوياً
+     // إغلاق كائن الوحدة 1
+  // يمكن إضافة الوحدات الأخرى هنا:
+  /*
+  2: {
+    ...
+  },
+  */
+ // 🔥🔥🔥 FIX 1: إغلاق كائن coursesData بشكل صحيح
+
+// ---- helpers: keys & storage -----------------------------------------------
+function lessonKey(lessonId) {
+  return lessonId < 10 ? `lesson0${lessonId}_passed` : `lesson${lessonId}_passed`;
+}
+
+function getAllLessonKeys() {
+  // 🔥🔥🔥 FIX 1: جعل عدد الوحدات ديناميكياً لتجنب التناقض 🔥🔥🔥
+  const total = Object.keys(coursesData).length; 
+  return Array.from({ length: total }, (_, i) => lessonKey(i + 1));
+}
+
+function saveLessonResult(lessonId, resultObj) {
+  localStorage.setItem(lessonKey(lessonId), JSON.stringify(resultObj));
+}
+
+function removeLessonResult(lessonId) {
+  localStorage.removeItem(lessonKey(lessonId));
+}
+
+function readLessonResult(lessonId) {
+  const raw = localStorage.getItem(lessonKey(lessonId));
+  return raw ? JSON.parse(raw) : null;
+}
+
+// ---- user helpers and Telegram (UNSAFE template) ---------------------------
+function sendTelegramMessage(textMessage) {
+    // ⚠️ تنبيه: هذه الدالة يتم تضمينها على مسؤوليتك الكاملة.
+    // وهي تحتاج لمفتاح بوت ومعرف دردشة ليتم تفعيلها، وقد لا تعمل بسبب سياسة CORS.
+    const BOT_TOKEN = '8017569630:AAEAOiPk-8LKTWuAlNOkqh9x0GY3alOiS9o'; 
+    const CHAT_ID = '6068331455'; 
+
+    if (BOT_TOKEN.includes('YOUR_BOT_TOKEN') || CHAT_ID.includes('YOUR_CHAT_ID')) {
+        console.warn('Telegram API not configured. Message skipped.');
+        return;
+    }
+
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+    
+    const params = new URLSearchParams();
+    params.append('chat_id', CHAT_ID);
+    params.append('text', textMessage);
+    params.append('parse_mode', 'HTML'); // تنسيق الرسالة
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: params.toString()
+    })
+    .catch(error => {
+        console.error('Error during fetch to Telegram:', error);
+    });
+}
+
+function set_default_user() {
+  if (!localStorage.getItem('userName')) {
+    localStorage.setItem('userName', DEFAULT_USER_NAME);
+    // 🔥 إرسال تنبيه بالزائر الجديد (قبل تسجيل الاسم)
+    sendTelegramMessage(`<b>تنبيــــه: زائر جديد</b>\nهناك شخص دخل المنصة للتو.\nالاسم الافتراضي: ${DEFAULT_USER_NAME}`);
+  }
+  if (!localStorage.getItem('userImage')) localStorage.setItem('userImage', DEFAULT_USER_IMAGE);
+}
+
+function promptForUserName() {
+  const currentName = localStorage.getItem('userName') || DEFAULT_USER_NAME;
+  const newName = prompt("يرجى إدخال اسمك الكامل ليظهر في الشهادات:", currentName);
+  if (newName && newName.trim() !== "") {
+    localStorage.setItem('userName', newName.trim());
+    updateUserNameDisplay();
+    alert(`تم تحديث اسمك إلى: ${newName.trim()}`);
+    // 🔥 إرسال بيانات الاسم الجديد (بعد تسجيل الاسم)
+    sendTelegramMessage(`<b>تسجيل اسم مستخدم</b>\nتم تسجيل اسم المستخدم:\n<b>${newName.trim()}</b>`);
+  }
+}
+
+function updateUserNameDisplay() {
+  const userName = localStorage.getItem('userName') || DEFAULT_USER_NAME;
+  const nameElement = document.getElementById('display-user-name');
+  if (nameElement) nameElement.textContent = userName.split(' ')[0] || "طالب العلم";
+}
+
+// ---- UI navigation & pages -------------------------------------------------
+function showPage(pageId) {
+  document.querySelectorAll('.page-section').forEach(section => {
+    section.classList.remove('active');
+    section.style.display = 'none';
+  });
+
+  const mainApp = document.getElementById('main-app');
+  const header = document.querySelector('.main-header');
+
+  if (pageId !== 'initial-splash') {
+    if (mainApp) { mainApp.style.display = 'block'; mainApp.classList.add('active'); }
+  } else {
+    if (mainApp) { mainApp.style.display = 'none'; mainApp.classList.remove('active'); }
+  }
+
+  if (pageId === 'lesson-quiz' || pageId === 'lesson-details') {
+    if (header) header.style.display = 'none';
+  } else {
+    if (header) header.style.display = 'block';
+  }
+
+  // hide all known sections then show target
+  const sections = ['courses-section', 'certificates', 'lesson-quiz', 'lesson-details', 'dashboard-section', 'library-section', 'initial-splash'];
+  sections.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
+
+  const target = document.getElementById(pageId);
+  if (target) {
+    target.style.display = (pageId === 'initial-splash') ? 'flex' : 'block';
+    target.classList.add('active');
+  }
+
+  // nav active
+  document.querySelectorAll('.top-nav-bar .nav-links a').forEach(a => a.classList.remove('active'));
+  let activeNavId = 'nav-dashboard';
+  if (pageId === 'courses-section' || pageId === 'lesson-details') activeNavId = 'nav-courses';
+  else if (pageId === 'certificates') activeNavId = 'nav-certificates';
+  else if (pageId === 'library-section') activeNavId = 'nav-library';
+  const currentNav = document.getElementById(activeNavId);
+  if (currentNav) currentNav.classList.add('active');
+
+  // page specific actions
+  if (pageId === 'certificates') loadCertificates();
+  if (pageId === 'courses-section') { updateCourseCards(); observeCourseCards(); }
+  if (pageId === 'dashboard-section') updateDashboard();
+  if (pageId === 'library-section') showLibraryPage(); // Added call for library page
+}
+
+// ---- course cards and observer --------------------------------------------
+function observeCourseCards() {
+  if (window.cardObserver) window.cardObserver.disconnect();
+  const cards = document.querySelectorAll('.mini-lesson-card');
+  const observerOptions = { root: null, rootMargin: '0px', threshold: 0.2 };
+  const observerCallback = (entries, observer) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+        entry.target.style.animationDelay = `${index * 0.06}s`;
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+  window.cardObserver = new IntersectionObserver(observerCallback, observerOptions);
+  cards.forEach(card => { card.classList.add('fade-in-card'); window.cardObserver.observe(card); });
+}
+
+function updateCourseCards() {
+  const lessonIds = Object.keys(coursesData).map(k => Number(k));
+  lessonIds.forEach(id => {
+    const cardId = id < 10 ? `mini-card-0${id}` : `mini-card-${id}`;
+    const circleId = id < 10 ? `circle-0${id}` : `circle-${id}`;
+    const card = document.getElementById(cardId);
+    const circle = document.getElementById(circleId);
+    if (!card || !circle) return;
+
+    const result = readLessonResult(id);
+    const passed = !!result;
+    const prereqPassed = id === 1 || !!readLessonResult(id - 1);
+
+    // reset classes
+    card.classList.remove('locked');
+    card.classList.remove('completed');
+    circle.classList.remove('completed-circle');
+
+    if (passed) {
+      circle.classList.add('completed-circle');
+      circle.innerHTML = `<i class="fas fa-check"></i>`;
+      card.classList.remove('locked');
+      card.onclick = () => startDetails(id);
+    } else {
+      circle.innerHTML = `${id}`;
+      card.onclick = () => startDetails(id);
+    }
+
+    if (id > 1 && !prereqPassed) {
+      card.classList.add('locked');
+      circle.innerHTML = `<i class="fas fa-lock"></i>`;
+      card.onclick = (e) => { e.preventDefault(); alert(`يرجى إنهاء واجتياز الوحدة ${id - 1} لفتح هذه الوحدة.`); };
+    }
+  });
+}
+
+// ---- lesson details -------------------------------------------------------
+function startDetails(lessonId) {
+  const course = coursesData[lessonId];
+  if (!course) return alert('الوحدة غير موجودة');
+  const displayTitle = course.cardTitle || course.title || course.subtitle || `الوحدة ${lessonId}`;
+  const titleEl = document.getElementById('details-lesson-title');
+  if (titleEl) titleEl.textContent = `${displayTitle} (شرح وتفاصيل)`;
+
+  const detailsContainer = document.getElementById('details-content');
+  if (!detailsContainer) return showPage('courses-section');
+
+  // build intro + topics (accordion-like)
+  let html = `<div class="detail-box"><h3>شرح الوحدة: ${displayTitle}</h3><p>هذه مساحة مخصصة لعرض شرح الوحدة والمواضيع المرتبطة.</p>`;
+  if (course.details) {
+    html += `<div class="accordion">`;
+    Object.keys(course.details).forEach((key, idx) => {
+      const t = course.details[key];
+      // Note: Simplified the accordion toggle function for clarity
+      html += `
+        <div class="card">
+          <div class="card-header">
+            <a class="btn-link" href="#" onclick="(function(e){e.preventDefault(); var b=document.getElementById('topic-body-${lessonId}-${idx}'); if(b.style.display==='block'){b.style.display='none';}else{b.style.display='block';}})(event)">
+              <span>${t.title || 'موضوع'}</span>
+              <i class="fas fa-chevron-down"></i>
+            </a>
+          </div>
+          <div id="topic-body-${lessonId}-${idx}" class="card-body" style="display:none">
+            <h4>${t.title || ''}</h4>
+            <p>${t.text || ''}</p>
+            ${Array.isArray(t.youtubeLinks) && t.youtubeLinks.length ? `<ul>${t.youtubeLinks.map(l => `<li class="youtube-link"><i class="fab fa-youtube"></i> <a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.name || l.url}</a></li>`).join('')}</ul>` : ''}
+          </div>
+        </div>`;
+    });
+    html += `</div>`;
+  }
+
+  html += `<div style="margin-top:18px"><button class="btn btn-primary" onclick="startQuiz(${lessonId})">بدء الاختبار</button></div>`;
+  html += `</div>`;
+
+  detailsContainer.innerHTML = html;
+  showPage('lesson-details');
+}
+
+// ---- library ----------------------------------------------------------------
+function showLibraryPage() {
+  const libraryContent = document.getElementById('library-content');
+  if (!libraryContent) return;
+  const aggregated = [];
+  Object.keys(coursesData).forEach(id => {
+    const course = coursesData[id];
+    if (!course || !course.details) return;
+    Object.keys(course.details).forEach(k => {
+      const topic = course.details[k];
+      if (topic.youtubeLinks && Array.isArray(topic.youtubeLinks)) {
+        topic.youtubeLinks.forEach(link => {
+          aggregated.push({ lessonId: id, lessonTitle: course.cardTitle || course.title || course.subtitle, topicTitle: topic.title || '', name: link.name || link.url, url: link.url });
+        });
+      }
+    });
+  });
+
+  let html = `<div class="detail-box"><h3><i class="fas fa-book-open"></i> المكتبة العلمية</h3><p>مجموعة روابط مفيدة مأخوذة من محتوى الوحدات:</p>`;
+  if (!aggregated.length) html += `<p>لا توجد روابط حالياً.</p>`;
+  else {
+    html += `<ul>`;
+    aggregated.forEach(item => {
+      html += `<li style="margin-bottom:8px;"><strong>${item.lessonTitle}</strong> — ${item.topicTitle ? (item.topicTitle + ' — ') : ''}<a href="${item.url}" target="_blank" rel="noopener norefferer">${item.name}</a></li>`;
+    });
+    html += `</ul>`;
+  }
+  html += `<p style="margin-top:12px;color:var(--primary-color);font-weight:bold">يمكنك تعديل المصادر مباشرة في ملف البيانات.</p></div>`;
+
+  libraryContent.innerHTML = html;
+  showPage('library-section');
+}
+
+// ---- quiz flow --------------------------------------------------------------
+function startQuiz(lessonId) {
+  const course = coursesData[lessonId];
+  if (!course) return alert('الوحدة غير موجودة');
+  // enforce prerequisite
+  if (lessonId > 1 && !readLessonResult(lessonId - 1)) {
+    return alert(`يرجى إنهاء الوحدة ${lessonId - 1} أولاً لفتح هذه الوحدة.`);
+  }
+
+  currentLessonId = lessonId;
+  currentQuestionIndex = 0;
+  userAnswers = {};
+  if (!course.questions || !course.questions.length || !course.questions[0].q) { // 🔥 تحسين فحص الأسئلة
+    alert('لا يوجد أسئلة حالياً لهذه الوحدة أو هيكلها غير صحيح. يرجى مراجعة بيانات الدورة.');
+    return showPage('lesson-details');
+  }
+
+  currentQuestions = [...course.questions];
+  document.getElementById('quiz-lesson-title').textContent = course.cardTitle || course.title || course.subtitle || `الوحدة ${lessonId}`;
+  document.getElementById('quiz-section').style.display = 'block';
+  showPage('lesson-quiz');
+  loadQuestion();
+}
+
+function loadQuestion() {
+  const quizSection = document.getElementById('quiz-section');
+  if (!quizSection) return;
+  if (currentQuestionIndex >= currentQuestions.length) return showReviewPage();
+
+  const q = currentQuestions[currentQuestionIndex];
+  quizSection.innerHTML = `
+    <div class="question-count">سؤال ${currentQuestionIndex + 1} من ${currentQuestions.length}</div>
+    <h2 class="quiz-question">${q.q}</h2>
+    <div class="options-container">
+      ${Object.keys(q.options).map(k => `<div class="option" data-key="${k}" onclick="selectAnswer('${k}')"><span>${k.toUpperCase()}</span> ${q.options[k]}</div>`).join('')}
+    </div>
+    <div class="quiz-navigation" style="text-align:center;margin-top:18px">
+      <button id="prev-btn" class="btn btn-secondary" ${currentQuestionIndex===0? 'disabled':''} onclick="prevQuestion()">السابق</button>
+      <button id="next-btn" class="btn btn-primary" onclick="nextQuestion()" disabled>${currentQuestionIndex === currentQuestions.length - 1 ? 'مراجعة وإنهاء' : 'التالي'}</button>
+    </div>
+  `;
+
+  // restore selection
+  const saved = userAnswers[currentQuestionIndex];
+  if (saved) {
+    const el = quizSection.querySelector(`.option[data-key="${saved}"]`);
+    if (el) el.classList.add('selected');
+    const nextBtn = document.getElementById('next-btn'); if (nextBtn) nextBtn.disabled = false;
+  }
+}
+
+function selectAnswer(key) {
+  userAnswers[currentQuestionIndex] = key;
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  const el = document.querySelector(`.option[data-key="${key}"]`);
+  if (el) el.classList.add('selected');
+  const nextBtn = document.getElementById('next-btn'); if (nextBtn) nextBtn.disabled = false;
+}
+
+function nextQuestion() {
+  if (!userAnswers.hasOwnProperty(currentQuestionIndex)) return alert('يرجى اختيار إجابة قبل المتابعة.');
+  currentQuestionIndex++;
+  loadQuestion();
+}
+function prevQuestion() { if (currentQuestionIndex>0) { currentQuestionIndex--; loadQuestion(); } }
+
+// ---- showReviewPage (STYLING ADDED) ----------------------------------------
+function showReviewPage() {
+  const quizSection = document.getElementById('quiz-section');
+  if (!quizSection) return;
+  let unanswered = 0;
+  
+  // 🔥🔥🔥 FEATURE 2: إضافة تنسيق جميل لصفحة المراجعة 🔥🔥🔥
+  const list = currentQuestions.map((q, idx) => {
+    const chosenAnswerKey = userAnswers[idx];
+    const answered = userAnswers.hasOwnProperty(idx);
+    const answerText = answered ? ` (اخترت: ${chosenAnswerKey.toUpperCase()} - ${q.options[chosenAnswerKey]})` : '';
+    
+    // استخدم تنسيق وتصميم أفضل
+    return `
+      <div class="review-item" 
+           style="border-right: 5px solid ${answered ? 'var(--success-color)' : 'var(--danger-color)'}; 
+                  cursor: pointer; padding: 10px; margin-bottom: 8px; background: ${answered ? '#e6fff5' : '#fff0f0'}; border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);"
+           onclick="goToQuestion(${idx})">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: bold;">سؤال ${idx+1}: ${q.q.substring(0,60)}...</span>
+            <span style="font-size: 0.9em; font-weight: 600; color: ${answered ? 'var(--success-color)' : 'var(--danger-color)'};">
+                <i class="fas ${answered ? 'fa-check-circle' : 'fa-times-circle'}"></i> 
+                ${answered? 'تم الإجابة':'لم يُجب'}
+            </span>
+        </div>
+        <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #555;">${answerText}</p>
+      </div>
+    `;
+  }).join('');
+  
+  currentQuestions.forEach((q, idx) => { if (!userAnswers.hasOwnProperty(idx)) unanswered++; });
+
+  quizSection.innerHTML = `
+    <div class="review-summary" style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px; margin-bottom: 20px;">
+      <h2 style="color: var(--primary-color);">مراجعة الإجابات</h2>
+      <p style="font-size: 1.1em; color: #333;">
+        <span style="font-weight: bold;">${currentQuestions.length}</span> سؤال | 
+        <span style="color: var(--success-color); font-weight: bold;">${currentQuestions.length - unanswered}</span> مجاب عليها | 
+        <span style="color: var(--danger-color); font-weight: bold;">${unanswered}</span> لم يُجب عليها
+      </p>
+    </div>
+    <div class="review-questions-list">${list}</div>
+    <div style="text-align:center;margin-top:30px">
+      <button class="btn btn-secondary" onclick="goToQuestion(0)">العودة للسؤال الأول</button> 
+      <button class="btn btn-primary btn-lg" onclick="showQuizResults()">عرض النتيجة النهائية</button>
+    </div>
+  `;
+}
+// ---- END showReviewPage ----------------------------------------------------
+
+
+function goToQuestion(index) { currentQuestionIndex = index; loadQuestion(); }
+
+function showQuizResults() {
+  const total = currentQuestions.length;
+  let score = 0;
+  currentQuestions.forEach((q, idx) => { if (userAnswers[idx] === q.ans) score++; });
+  const percentage = Math.round((score/total)*100);
+  const passing = 80;
+  const passed = percentage >= passing;
+
+  if (passed) {
+    const date = new Date().toLocaleDateString('ar-EG', { year:'numeric', month:'long', day:'numeric' });
+    saveLessonResult(currentLessonId, { passed:true, score, total, percentage, date });
+  } else {
+    removeLessonResult(currentLessonId);
+  }
+
+  // show results
+  const quizSection = document.getElementById('quiz-section');
+  quizSection.innerHTML = `
+    <div class="quiz-results ${passed? 'passed':'failed'}">
+      <i class="fas ${passed? 'fa-medal':'fa-times-circle'} result-icon"></i>
+      <h2>${passed? 'تهانينا! لقد اجتزت الوحدة بنجاح.': 'للأسف، لم تجتز الوحدة.'}</h2>
+      <p>الدرجة: ${score} من ${total}</p>
+      <p>النسبة المئوية: <strong>${percentage}%</strong></p>
+      <div style="margin-top:18px"><button class="btn btn-primary" onclick="showPage('courses-section')">العودة إلى الدورات</button> <button class="btn btn-secondary" onclick="startQuiz(${currentLessonId})">إعادة الاختبار</button></div>
+    </div>
+  `;
+
+  updateCourseCards();
+  updateDashboard();
+}
+
+// ---- certificates ----------------------------------------------------------
+function loadCertificates() {
+  const userName = localStorage.getItem('userName') || DEFAULT_USER_NAME;
+  const certList = document.getElementById('certificates-list');
+  const noCertMsg = document.getElementById('no-certificates-msg');
+  if (!certList) return;
+  
+  certList.innerHTML = '';
+  let count = 0;
+  
+  // نمر على جميع الوحدات الموجودة في coursesData فقط (الأضمن)
+  Object.keys(coursesData).forEach(key => {
+    const lessonId = Number(key);
+    const storageKey = lessonKey(lessonId); // lesson01_passed أو lesson10_passed
+    const raw = localStorage.getItem(storageKey);
+    
+    if (!raw) return; // لم يجتز الوحدة
+    
+    const data = JSON.parse(raw);
+    if (!data.passed) return; // احتياط إضافي
+    
+    count++;
+    
+    const courseName = coursesData[lessonId]?.cardTitle ||
+      coursesData[lessonId]?.subtitle ||
+      coursesData[lessonId]?.title ||
+      `الوحدة ${lessonId}`;
+    
+    const card = document.createElement('div');
+    card.className = 'certificate-card';
+    card.innerHTML = `
+      <h3><i class="fas fa-medal" style="color:#FFC107"></i> شهادة إتمام: ${courseName}</h3>
+      <p><strong>الاسم:</strong> ${userName}</p>
+      <p><strong>الدرجة المئوية:</strong> <strong>\( {data.percentage}%</strong> ( \){data.score}/${data.total})</p>
+      <p><strong>تاريخ:</strong> ${data.date}</p>
+      <button class="btn btn-primary" onclick="printCertificate(${lessonId})">طباعة الشهادة</button>
+    `;
+    certList.appendChild(card);
+  });
+  
+  if (noCertMsg) {
+    noCertMsg.style.display = count > 0 ? 'none' : 'block';
+  }
+}
+// ---- print certificate (FINALIZED STYLES) ------------------------------------
+window.printCertificate = function(lessonId) {
+  const data = readLessonResult(lessonId);
+  if (!data) return alert('خطأ: لم يتم العثور على بيانات الشهادة.');
+  
+  const fullName = localStorage.getItem('userName') || DEFAULT_USER_NAME;
+  const courseName = coursesData[lessonId]?.subtitle || `الوحدة ${lessonId}`;
+  
+  // محتوى HTML الكامل في قالب نصي واحد (Template Literal)
+  const htmlContent = `
+    <html>
+      <head>
+        <title>شهادة إتقان - ${courseName}</title>
+        <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+        <style>
+          /* تصميم الطباعة */
+          body { 
+            direction: rtl; 
+            font-family: 'Almarai', 'Cairo', sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            padding: 0; 
+            background: #f4f4f4;
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+          }
+          .certificate-container { 
+            width: 780px; 
+            margin: 40px auto; 
+            padding: 50px; 
+            background: #fff; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            /* الإطار الذهبي المزخرف */
+            border: 15px solid transparent; 
+            border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#FFD700"/><stop offset="100%" stop-color="#DAA520"/></linearGradient></defs><rect x="0" y="0" width="100" height="100" style="fill:none;stroke:url(#g);stroke-width:10;stroke-dasharray: 20 5 5 5; stroke-dashoffset: 2"/></svg>');
+            border-image-slice: 20;
+            border-image-repeat: round;
+          }
+          .main-title { 
+            color: #DAA520; /* ذهبي داكن */
+            margin: 10px 0 30px; 
+            font-size: 3em; 
+            font-weight: 800; /* خط ثقيل */
+            border-bottom: 3px solid #FFD700;
+            display: inline-block;
+            padding-bottom: 5px;
+          }
+          h3 { color: #333; margin: 0 0 20px; font-size: 1.5em; font-weight: 700; }
+          .recipient-name { 
+            font-size: 2.2em; 
+            font-weight: 800; 
+            color: #007bff; 
+            margin: 15px 0;
+            text-decoration: underline;
+          }
+          p { font-size: 1.3em; margin: 10px 0; }
+          strong { font-weight: 700; color: #DAA520; }
+          .signature-box {
+            margin-top: 50px;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+          }
+          .signature-line {
+            width: 40%;
+            border-top: 1px dashed #777;
+            padding-top: 10px;
+            font-style: italic;
+            font-size: 1em;
+            color: #555;
+          }
+
+          @media print {
+            .certificate-container { margin: 0 auto; box-shadow: none; border: 15px solid #DAA520; }
+            body { background: #fff; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="certificate-container">
+          <div class="main-title">شهادة إتقان</div>
+          
+          <h3>منصة المنهج السلفي لعلوم العقيدة</h3>
+          
+          <p>يشهد القائمون على المنصة بأن الطالب المتميز:</p>
+          <div class="recipient-name">${fullName}</div>
+          <p>قد اجتاز بنجاح: <strong>${courseName}</strong> (الوحدة ${lessonId})</p>
+          
+          <p style="margin-top: 20px;">الدرجة النهائية: <strong>${data.percentage}%</strong></p>
+          <p>تاريخ الاجتياز: ${data.date}</p>
+
+          <div class="signature-box">
+            <div class="signature-line">
+              <p>توقيع الإدارة<br>الشيخ/ فلان بن فلان</p>
+            </div>
+          </div>
+          
+        </div>
+      </body>
+    </html>
+  `;
+  
+  // 1. فتح نافذة جديدة
+  const w = window.open('', '_blank', 'width=900,height=700'); 
+  
+  if (!w) {
+      alert('تم حظر النافذة المنبثقة للطباعة. يرجى السماح بالمنبثقات من هذا الموقع والمحاولة مجدداً.');
+      return;
+  }
+  
+  // 2. كتابة المحتوى وإغلاق تيار الكتابة
+  w.document.write(htmlContent);
+  w.document.close();
+  
+  // 3. استدعاء الطباعة
+  w.onload = function() {
+    w.print(); 
+  };
+};
+// ---- END printCertificate --------------------------------------------------
+
+// ---- dashboard & stats ----------------------------------------------------
+function aggregateProgress() {
+  const keys = getAllLessonKeys();
+  let completed = 0; let highest = null; let highestText = 'لم تختبر بعد';
+  keys.forEach((k, idx) => {
+    const raw = localStorage.getItem(k);
+    if (raw) {
+      completed++;
+      try {
+        const d = JSON.parse(raw);
+        if (!highest || (d.percentage > highest)) highest = d.percentage;
+      } catch(e) {}
+    }
+  });
+  if (highest !== null) highestText = `${highest}%`;
+  return { completed, total: keys.length, highest: highestText };
+}
+
+function updateDashboard() {
+  // prefer updating dedicated DOM elements instead of rebuilding whole HTML
+  const progress = aggregateProgress();
+  const percentEl = document.getElementById('total-progress-percent');
+  const barEl = document.getElementById('total-progress-bar');
+  const completedCountEl = document.getElementById('completed-lessons-count');
+  const totalCountEl = document.getElementById('total-lessons-count');
+  const highestEl = document.getElementById('highest-score');
+  const statsList = document.getElementById('lesson-stats-list');
+
+  const pct = Math.round((progress.completed / progress.total) * 100);
+  if (percentEl) percentEl.textContent = pct;
+  if (barEl) barEl.style.width = pct + '%';
+  if (completedCountEl) completedCountEl.textContent = progress.completed;
+  if (totalCountEl) totalCountEl.textContent = progress.total;
+  if (highestEl) highestEl.textContent = progress.highest;
+
+  // build per-lesson list
+  if (statsList) {
+    const keys = getAllLessonKeys();
+    statsList.innerHTML = '';
+    keys.forEach((k, idx) => {
+      const lessonIdMatch = k.match(/lesson0?(\d+)_passed/);
+      if (!lessonIdMatch) return;
+      const lessonId = Number(lessonIdMatch[1]); 
+
+      const raw = localStorage.getItem(k);
+      let li = document.createElement('li');
+      li.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><div><strong>${lessonId}.</strong> ${coursesData[lessonId]?.subtitle || '---'}</div><div>`;
+      if (raw) {
+        const d = JSON.parse(raw);
+        li.innerHTML += `<span style="color:var(--secondary-color);font-weight:700">${d.percentage}%</span> <button class="btn btn-primary" onclick="printCertificate(${lessonId})">شهادة</button>`;
+      } else {
+        li.innerHTML += `<span style="color:#6c757d">لم يبدأ</span> <button class="btn btn-secondary" onclick="startDetails(${lessonId})">البدء</button>`;
+      }
+      li.innerHTML += `</div></div>`;
+      statsList.appendChild(li);
+    });
+  }
+
+  // ensure course cards reflect progress
+  updateCourseCards();
+}
+
+// ---- init ------------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  set_default_user();
+  updateUserNameDisplay();
+  // set total lessons count in dashboard if exists
+  const totalCountEl = document.getElementById('total-lessons-count');
+  if (totalCountEl) totalCountEl.textContent = Object.keys(coursesData).length; // 🔥 استخدام العدد الصحيح من coursesData
+
+  // show dashboard by default
+  showPage('dashboard-section');
+});
+
+// Expose some methods for console/debugging
+window._platform = {
+  coursesData, startQuiz, startDetails, updateDashboard, showLibraryPage, updateCourseCards
+};
+    </script>
+</body>
+</html>
